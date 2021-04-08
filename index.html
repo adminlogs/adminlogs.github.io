@@ -1,1 +1,89 @@
-
+create software raid 5 disk using 3 physical disks (sdb,sdc and sdd)
+<pre><code>
+[root@public ~]# mdadm --create /dev/md0 --level 5 --raid-disks=3 /dev/sd[b-d]
+mdadm: partition table exists on /dev/sdb
+mdadm: partition table exists on /dev/sdb but will be lost or
+       meaningless after creating array
+mdadm: partition table exists on /dev/sdc
+mdadm: partition table exists on /dev/sdc but will be lost or
+       meaningless after creating array
+mdadm: partition table exists on /dev/sdd
+mdadm: partition table exists on /dev/sdd but will be lost or
+       meaningless after creating array
+Continue creating array? y
+mdadm: Defaulting to version 1.2 metadata
+mdadm: array /dev/md0 started.
+[root@public ~]# watch cat /proc/mdstat 
+[root@public ~]# cat /proc/mdstat 
+Personalities : [raid6] [raid5] [raid4] 
+md0 : active raid5 sdd[3] sdc[1] sdb[0]
+      16758784 blocks super 1.2 level 5, 512k chunk, algorithm 2 [3/3] [UUU]
+      
+unused devices: <none>
+[root@public ~]# 
+</code></pre>
+create LVM logical volume on the previous created raid 5 disk. it will initially occupy 50% of the physical volume.
+<pre>[root@public ~]# pvcreate /dev/md0 
+  Physical volume "/dev/md0" successfully created.
+[root@public ~]# pvdisplay /dev/md0
+  "/dev/md0" is a new physical volume of "15.98 GiB"
+  --- NEW Physical volume ---
+  PV Name               /dev/md0
+  VG Name               
+  PV Size               15.98 GiB
+  Allocatable           NO
+  PE Size               0   
+  Total PE              0
+  Free PE               0
+  Allocated PE          0
+  PV UUID               JAFSD4-kAVf-yq1K-VcWa-wfgG-Xm3m-v3xKhl
+   
+[root@public ~]# pvs /dev/md0
+  PV         VG Fmt  Attr PSize  PFree 
+  /dev/md0      lvm2 ---  15.98g 15.98g
+[root@public ~]# vgcreate lvmraidvg /dev/md0
+  Volume group "lvmraidvg" successfully created
+[root@public ~]# vgdisplay lvmraidvg
+  --- Volume group ---
+  VG Name               lvmraidvg
+  System ID             
+  Format                lvm2
+  Metadata Areas        1
+  Metadata Sequence No  1
+  VG Access             read/write
+  VG Status             resizable
+  MAX LV                0
+  Cur LV                0
+  Open LV               0
+  Max PV                0
+  Cur PV                1
+  Act PV                1
+  VG Size               15.98 GiB
+  PE Size               4.00 MiB
+  Total PE              4091
+  Alloc PE / Size       0 / 0   
+  Free  PE / Size       4091 / 15.98 GiB
+  VG UUID               a0MPk1-9v2d-Cepb-ZJu5-kI6d-cE3d-dmDX9O
+   
+[root@public ~]# lvcreate -n lvmraidlv -l 50%VG lvmraidvg
+  Logical volume "lvmraidlv" created.
+[root@public ~]# lvdisplay /dev/lvmraidvg/lvmraidlv 
+  --- Logical volume ---
+  LV Path                /dev/lvmraidvg/lvmraidlv
+  LV Name                lvmraidlv
+  VG Name                lvmraidvg
+  LV UUID                GteCHt-DRoD-lvRp-85uU-zzhY-rkqc-k79268
+  LV Write Access        read/write
+  LV Creation host, time localhost.localdomain, 2021-04-07 21:28:43 +0100
+  LV Status              available
+  # open                 0
+  LV Size                <7.99 GiB
+  Current LE             2045
+  Segments               1
+  Allocation             inherit
+  Read ahead sectors     auto
+  - currently set to     8192
+  Block device           253:2
+   
+[root@public ~]# 
+</pre>
