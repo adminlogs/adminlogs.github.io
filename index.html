@@ -1,4 +1,4 @@
-create a RAID 5 array using 3 physical disks (sdb,sdc and sdd)
+create a RAID-5 array using 3 physical disks (sdb,sdc and sdd)
 <pre><code>
 [root@public ~]# mdadm --create /dev/md0 --level 5 --raid-disks=3 /dev/sd[b-d]
 mdadm: partition table exists on /dev/sdb
@@ -22,7 +22,7 @@ md0 : active raid5 sdd[3] sdc[1] sdb[0]
 unused devices: <none>
 [root@public ~]# 
 </code></pre>
-create LVM logical volume on the previous created raid 5 disk. it will initially occupy 50% of the physical volume.
+create LVM logical volume on the previous created RAID-5 array. it will initially occupy 50% of the physical volume.
 <pre>[root@public ~]# pvcreate /dev/md0 
   Physical volume "/dev/md0" successfully created.
 [root@public ~]# pvdisplay /dev/md0
