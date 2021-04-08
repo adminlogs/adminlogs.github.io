@@ -1,4 +1,4 @@
-create software raid 5 disk using 3 physical disks (sdb,sdc and sdd)
+create a RAID 5 array using 3 physical disks (sdb,sdc and sdd)
 <pre><code>
 [root@public ~]# mdadm --create /dev/md0 --level 5 --raid-disks=3 /dev/sd[b-d]
 mdadm: partition table exists on /dev/sdb
