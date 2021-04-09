@@ -154,4 +154,11 @@ administratorsx20000<span style="color:#808030; ">:</span>
 <span style="color:#808030; ">[</span><span style="color:#0000e6; ">root@public ~</span><span style="color:#808030; ">]</span><span style="color:#696969; "># usermod -aG administrators abel</span>
 <span style="color:#808030; ">[</span><span style="color:#0000e6; ">root@public ~</span><span style="color:#808030; ">]</span><span style="color:#696969; "># grep administrators /etc/group</span>
 administratorsx20000<span style="color:#808030; ">:</span>abel
+<span style="color:#808030; ">[</span><span style="color:#0000e6; ">root@public ~</span><span style="color:#808030; ">]</span><span style="color:#696969; "># useradd -u 10001 -d /secured/home/netadmin -s /bin/zsh adel</span>
+<span style="color:#808030; ">[</span><span style="color:#0000e6; ">root@public ~</span><span style="color:#808030; ">]</span><span style="color:#696969; "># grep adel /etc/passwd</span>
+adel<span style="color:#808030; ">:</span>x<span style="color:#808030; ">:</span><span style="color:#008c00; ">10001</span><span style="color:#808030; ">:</span><span style="color:#008c00; ">10001</span><span style="color:#808030; ">:</span><span style="color:#808030; ">:</span><span style="color:#40015a; ">/secured/home/netadmin</span><span style="color:#808030; ">:</span><span style="color:#40015a; ">/bin/zsh</span>
+<span style="color:#808030; ">[</span><span style="color:#0000e6; ">root@public ~</span><span style="color:#808030; ">]</span><span style="color:#696969; "># usermod -aG administrators adel</span>
+<span style="color:#808030; ">[</span><span style="color:#0000e6; ">root@public ~</span><span style="color:#808030; ">]</span><span style="color:#696969; "># grep administrators /etc/group</span>
+administrators<span style="color:#808030; ">:</span>x<span style="color:#808030; ">:</span><span style="color:#008c00; ">20000</span><span style="color:#808030; ">:</span>abel,adel
 </pre>
+
