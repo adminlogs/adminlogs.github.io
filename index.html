@@ -1,43 +1,42 @@
-
-<pre style="color:#000000;background:#ffffff;"><span style="color:#808030; ">[</span>root@public <span style="color:#808030; ">~</span><span style="color:#808030; ">]</span># mdadm <span style="color:#808030; ">-</span><span style="color:#808030; ">-</span>create <span style="color:#808030; ">/</span>dev<span style="color:#808030; ">/</span>md0 <span style="color:#808030; ">-</span><span style="color:#808030; ">-</span>level <span style="color:#008c00; ">5</span> <span style="color:#808030; ">-</span><span style="color:#808030; ">-</span>raid<span style="color:#808030; ">-</span>disks <span style="color:#008c00; ">3</span> <span style="color:#808030; ">/</span>dev<span style="color:#808030; ">/</span>sd<span style="color:#808030; ">[</span>b<span style="color:#808030; ">-</span>d<span style="color:#808030; ">]</span>
-mdadm<span style="color:#808030; ">:</span> partition table exists on <span style="color:#808030; ">/</span>dev<span style="color:#808030; ">/</span>sdb
-mdadm<span style="color:#808030; ">:</span> partition table exists on <span style="color:#808030; ">/</span>dev<span style="color:#808030; ">/</span>sdb but will be lost or
+<pre style="color:#000000;background:#ffffff;"><span style="color:#808030; ">[</span><span style="color:#0000e6; ">root@public ~</span><span style="color:#808030; ">]</span><span style="color:#696969; "># mdadm --create /dev/md0 --level 5 --raid-disks 3 /dev/sd[b-d]</span>
+mdadm<span style="color:#808030; ">:</span> partition table exists on <span style="color:#40015a; ">/dev/sdb</span>
+mdadm<span style="color:#808030; ">:</span> partition table exists on <span style="color:#40015a; ">/dev/sdb</span> but will be lost or
 meaningless after creating array
-mdadm<span style="color:#808030; ">:</span> partition table exists on <span style="color:#808030; ">/</span>dev<span style="color:#808030; ">/</span>sdc
-mdadm<span style="color:#808030; ">:</span> partition table exists on <span style="color:#808030; ">/</span>dev<span style="color:#808030; ">/</span>sdc but will be lost or
+mdadm<span style="color:#808030; ">:</span> partition table exists on <span style="color:#40015a; ">/dev/sdc</span>
+mdadm<span style="color:#808030; ">:</span> partition table exists on <span style="color:#40015a; ">/dev/sdc</span> but will be lost or
 meaningless after creating array
-mdadm<span style="color:#808030; ">:</span> partition table exists on <span style="color:#808030; ">/</span>dev<span style="color:#808030; ">/</span>sdd
-mdadm<span style="color:#808030; ">:</span> partition table exists on <span style="color:#808030; ">/</span>dev<span style="color:#808030; ">/</span>sdd but will be lost or
+mdadm<span style="color:#808030; ">:</span> partition table exists on <span style="color:#40015a; ">/dev/sdd</span>
+mdadm<span style="color:#808030; ">:</span> partition table exists on <span style="color:#40015a; ">/dev/sdd</span> but will be lost or
 meaningless after creating array
 Continue creating array<span style="color:#808030; ">?</span> y
-mdadm<span style="color:#808030; ">:</span> Defaulting to version <span style="color:#008c00; ">1.2</span> metadata
-mdadm<span style="color:#808030; ">:</span> array <span style="color:#808030; ">/</span>dev<span style="color:#808030; ">/</span>md0 started<span style="color:#808030; ">.</span>
-<span style="color:#808030; ">[</span>root@public <span style="color:#808030; ">~</span><span style="color:#808030; ">]</span># watch cat <span style="color:#808030; ">/</span>proc<span style="color:#808030; ">/</span>mdstat
-<span style="color:#808030; ">[</span>root@public <span style="color:#808030; ">~</span><span style="color:#808030; ">]</span># pvcreate <span style="color:#808030; ">/</span>dev<span style="color:#808030; ">/</span>md0
-Physical volume <span style="color:#800000; ">"</span><span style="color:#0000e6; ">/dev/md0</span><span style="color:#800000; ">"</span> successfully created<span style="color:#808030; ">.</span>
-<span style="color:#808030; ">[</span>root@public <span style="color:#808030; ">~</span><span style="color:#808030; ">]</span># pvdisplay <span style="color:#808030; ">/</span>dev<span style="color:#808030; ">/</span>md0
-<span style="color:#800000; ">"</span><span style="color:#0000e6; ">/dev/md0</span><span style="color:#800000; ">"</span> is a new physical volume of <span style="color:#800000; ">"</span><span style="color:#0000e6; ">15.98 GiB</span><span style="color:#800000; ">"</span>
-<span style="color:#808030; ">-</span><span style="color:#808030; ">-</span><span style="color:#808030; ">-</span> NEW Physical volume <span style="color:#808030; ">-</span><span style="color:#808030; ">-</span><span style="color:#808030; ">-</span>
-PV Name <span style="color:#808030; ">/</span>dev<span style="color:#808030; ">/</span>md0
+mdadm<span style="color:#808030; ">:</span> Defaulting to version <span style="color:#008c00; ">1</span><span style="color:#800000; font-weight:bold; ">.</span><span style="color:#008c00; ">2</span> metadata
+mdadm<span style="color:#808030; ">:</span> array <span style="color:#40015a; ">/dev/md0</span> started<span style="color:#800000; font-weight:bold; ">.</span>
+<span style="color:#808030; ">[</span><span style="color:#0000e6; ">root@public ~</span><span style="color:#808030; ">]</span><span style="color:#696969; "># watch cat /proc/mdstat</span>
+<span style="color:#808030; ">[</span><span style="color:#0000e6; ">root@public ~</span><span style="color:#808030; ">]</span><span style="color:#696969; "># pvcreate /dev/md0</span>
+Physical volume <span style="color:#0000e6; ">"</span><span style="color:#40015a; ">/dev/md0</span><span style="color:#0000e6; ">"</span> successfully created<span style="color:#800000; font-weight:bold; ">.</span>
+<span style="color:#808030; ">[</span><span style="color:#0000e6; ">root@public ~</span><span style="color:#808030; ">]</span><span style="color:#696969; "># pvdisplay /dev/md0</span>
+<span style="color:#0000e6; ">"</span><span style="color:#40015a; ">/dev/md0</span><span style="color:#0000e6; ">"</span> is a new physical volume of <span style="color:#0000e6; ">"15.98 GiB"</span>
+--- NEW Physical volume ---
+PV Name <span style="color:#40015a; ">/dev/md0</span>
 VG Name
-PV Size <span style="color:#008c00; ">15.98</span> GiB
+PV Size <span style="color:#008c00; ">15</span><span style="color:#800000; font-weight:bold; ">.</span><span style="color:#008c00; ">98</span> GiB
 Allocatable NO
 PE Size <span style="color:#008c00; ">0</span>
 Total PE <span style="color:#008c00; ">0</span>
 Free PE <span style="color:#008c00; ">0</span>
 Allocated PE <span style="color:#008c00; ">0</span>
-PV UUID QsHJGB<span style="color:#808030; ">-</span>hDEE<span style="color:#808030; ">-</span>8nAT<span style="color:#808030; ">-</span>XiS7<span style="color:#808030; ">-</span>IItH<span style="color:#808030; ">-</span>8Je1<span style="color:#808030; ">-</span>kVuYgx
+PV UUID QsHJGB-hDEE-8nAT-XiS7-IItH-8Je1-kVuYgx
 
-<span style="color:#808030; ">[</span>root@public <span style="color:#808030; ">~</span><span style="color:#808030; ">]</span># vgcreate lvmraidvg <span style="color:#808030; ">/</span>dev<span style="color:#808030; ">/</span>md0
-Volume group <span style="color:#800000; ">"</span><span style="color:#0000e6; ">lvmraidvg</span><span style="color:#800000; ">"</span> successfully created
-<span style="color:#808030; ">[</span>root@public <span style="color:#808030; ">~</span><span style="color:#808030; ">]</span># vgdisplay lvmraidvg
-<span style="color:#808030; ">-</span><span style="color:#808030; ">-</span><span style="color:#808030; ">-</span> Volume group <span style="color:#808030; ">-</span><span style="color:#808030; ">-</span><span style="color:#808030; ">-</span>
+<span style="color:#808030; ">[</span><span style="color:#0000e6; ">root@public ~</span><span style="color:#808030; ">]</span><span style="color:#696969; "># vgcreate lvmraidvg /dev/md0</span>
+Volume group <span style="color:#0000e6; ">"lvmraidvg"</span> successfully created
+<span style="color:#808030; ">[</span><span style="color:#0000e6; ">root@public ~</span><span style="color:#808030; ">]</span><span style="color:#696969; "># vgdisplay lvmraidvg</span>
+--- Volume group ---
 VG Name lvmraidvg
 System ID
 Format lvm2
 Metadata Areas <span style="color:#008c00; ">1</span>
 Metadata Sequence No <span style="color:#008c00; ">1</span>
-VG Access read<span style="color:#808030; ">/</span>write
+VG Access <span style="color:#40015a; ">read/write</span>
 VG Status resizable
 MAX LV <span style="color:#008c00; ">0</span>
 Cur LV <span style="color:#008c00; ">0</span>
@@ -45,114 +44,114 @@ Open LV <span style="color:#008c00; ">0</span>
 Max PV <span style="color:#008c00; ">0</span>
 Cur PV <span style="color:#008c00; ">1</span>
 Act PV <span style="color:#008c00; ">1</span>
-VG Size <span style="color:#008c00; ">15.98</span> GiB
-PE Size <span style="color:#008c00; ">4.00</span> MiB
+VG Size <span style="color:#008c00; ">15</span><span style="color:#800000; font-weight:bold; ">.</span><span style="color:#008c00; ">98</span> GiB
+PE Size <span style="color:#008c00; ">4</span><span style="color:#800000; font-weight:bold; ">.</span><span style="color:#008c00; ">00</span> MiB
 Total PE <span style="color:#008c00; ">4091</span>
-Alloc PE <span style="color:#808030; ">/</span> Size <span style="color:#008c00; ">0</span> <span style="color:#808030; ">/</span> <span style="color:#008c00; ">0</span>
-Free PE <span style="color:#808030; ">/</span> Size <span style="color:#008c00; ">4091</span> <span style="color:#808030; ">/</span> <span style="color:#008c00; ">15.98</span> GiB
-VG UUID pYWf2Y<span style="color:#808030; ">-</span>5j3b<span style="color:#808030; ">-</span>pKlW<span style="color:#808030; ">-</span>LaCL<span style="color:#808030; ">-</span>mr36<span style="color:#808030; ">-</span>KBBv<span style="color:#808030; ">-</span>TWi3jN
+Alloc PE / Size <span style="color:#008c00; ">0</span> / <span style="color:#008c00; ">0</span>
+Free PE / Size <span style="color:#008c00; ">4091</span> / <span style="color:#008c00; ">15</span><span style="color:#800000; font-weight:bold; ">.</span><span style="color:#008c00; ">98</span> GiB
+VG UUID pYWf2Y-5j3b-pKlW-LaCL-mr36-KBBv-TWi3jN
 
-<span style="color:#808030; ">[</span>root@public <span style="color:#808030; ">~</span><span style="color:#808030; ">]</span># lvcreate <span style="color:#808030; ">-</span>n lvmraidlv <span style="color:#808030; ">-</span>l <span style="color:#008c00; ">50</span><span style="color:#808030; ">%</span>VG lvmraidvg
-Logical volume <span style="color:#800000; ">"</span><span style="color:#0000e6; ">lvmraidlv</span><span style="color:#800000; ">"</span> created<span style="color:#808030; ">.</span>
-<span style="color:#808030; ">[</span>root@public <span style="color:#808030; ">~</span><span style="color:#808030; ">]</span># lvdisplay <span style="color:#808030; ">/</span>dev<span style="color:#808030; ">/</span>lvmraidvg<span style="color:#808030; ">/</span>lvmraidlv
-<span style="color:#808030; ">-</span><span style="color:#808030; ">-</span><span style="color:#808030; ">-</span> Logical volume <span style="color:#808030; ">-</span><span style="color:#808030; ">-</span><span style="color:#808030; ">-</span>
-LV Path <span style="color:#808030; ">/</span>dev<span style="color:#808030; ">/</span>lvmraidvg<span style="color:#808030; ">/</span>lvmraidlv
+<span style="color:#808030; ">[</span><span style="color:#0000e6; ">root@public ~</span><span style="color:#808030; ">]</span><span style="color:#696969; "># lvcreate -n lvmraidlv -l 50%VG lvmraidvg</span>
+Logical volume <span style="color:#0000e6; ">"lvmraidlv"</span> created<span style="color:#800000; font-weight:bold; ">.</span>
+<span style="color:#808030; ">[</span><span style="color:#0000e6; ">root@public ~</span><span style="color:#808030; ">]</span><span style="color:#696969; "># lvdisplay /dev/lvmraidvg/lvmraidlv</span>
+--- Logical volume ---
+LV Path <span style="color:#40015a; ">/dev/lvmraidvg/lvmraidlv</span>
 LV Name lvmraidlv
 VG Name lvmraidvg
-LV UUID EMZJLD<span style="color:#808030; ">-</span>v3P4<span style="color:#808030; ">-</span>5wJo<span style="color:#808030; ">-</span>TqB2<span style="color:#808030; ">-</span>tOQv<span style="color:#808030; ">-</span>1SuQ<span style="color:#808030; ">-</span>80Ixka
-LV Write Access read<span style="color:#808030; ">/</span>write
-LV Creation host<span style="color:#808030; ">,</span> time localhost<span style="color:#008c00; ">.</span>localdomain<span style="color:#808030; ">,</span> <span style="color:#009797; ">2021-04-08</span> <span style="color:#8745a0; ">21:35:08</span> <span style="color:#808030; ">+</span><span style="color:#008c00; ">0100</span>
+LV UUID EMZJLD-v3P4-5wJo-TqB2-tOQv-1SuQ-80Ixka
+LV Write Access <span style="color:#40015a; ">read/write</span>
+LV Creation host, <span style="color:#800000; font-weight:bold; ">time</span> localhost<span style="color:#800000; font-weight:bold; ">.</span>localdomain, <span style="color:#008c00; ">2021</span>-<span style="color:#008c00; ">04</span>-<span style="color:#008c00; ">08</span> <span style="color:#008c00; ">21</span><span style="color:#808030; ">:</span><span style="color:#008c00; ">35</span><span style="color:#808030; ">:</span><span style="color:#008c00; ">08</span> +<span style="color:#008c00; ">0100</span>
 LV Status available
-# open <span style="color:#008c00; ">0</span>
-LV Size <span style="color:#808030; ">&lt;</span><span style="color:#008c00; ">7.99</span> GiB
+<span style="color:#696969; "># open 0</span>
+LV Size <span style="color:#e34adc; ">&lt;</span><span style="color:#008c00; ">7</span><span style="color:#800000; font-weight:bold; ">.</span><span style="color:#008c00; ">99</span> GiB
 Current LE <span style="color:#008c00; ">2045</span>
 Segments <span style="color:#008c00; ">1</span>
 Allocation inherit
 Read ahead sectors auto
-<span style="color:#808030; ">-</span> currently set to <span style="color:#008c00; ">8192</span>
+- currently <span style="color:#bb7977; font-weight:bold; ">set</span> to <span style="color:#008c00; ">8192</span>
 Block device <span style="color:#008c00; ">253</span><span style="color:#808030; ">:</span><span style="color:#008c00; ">2</span>
 
-<span style="color:#808030; ">[</span>root@public <span style="color:#808030; ">~</span><span style="color:#808030; ">]</span># dd if<span style="color:#808030; ">=</span><span style="color:#808030; ">/</span>dev<span style="color:#808030; ">/</span>urandom of<span style="color:#808030; ">=</span><span style="color:#808030; ">/</span>boot<span style="color:#808030; ">/</span>keyfile bs<span style="color:#808030; ">=</span>1K count<span style="color:#808030; ">=</span><span style="color:#008c00; ">1</span>
-<span style="color:#008c00; ">1</span><span style="color:#808030; ">+</span><span style="color:#008c00; ">0</span> records in
-<span style="color:#008c00; ">1</span><span style="color:#808030; ">+</span><span style="color:#008c00; ">0</span> records out
-<span style="color:#008c00; ">1024</span> bytes <span style="color:#808030; ">(</span><span style="color:#008c00; ">1.0</span> kB<span style="color:#808030; ">,</span> <span style="color:#008c00; ">1.0</span> KiB<span style="color:#808030; ">)</span> copied<span style="color:#808030; ">,</span> <span style="color:#008c00; ">0.000336448</span> s<span style="color:#808030; ">,</span> <span style="color:#008c00; ">3.0</span> MB<span style="color:#808030; ">/</span>s
-<span style="color:#808030; ">[</span>root@public <span style="color:#808030; ">~</span><span style="color:#808030; ">]</span># chmod <span style="color:#008c00; ">400</span> <span style="color:#808030; ">/</span>boot<span style="color:#808030; ">/</span>keyfile
-<span style="color:#808030; ">[</span>root@public <span style="color:#808030; ">~</span><span style="color:#808030; ">]</span># cryptsetup luksFormat <span style="color:#808030; ">/</span>dev<span style="color:#808030; ">/</span>lvmraidvg<span style="color:#808030; ">/</span>lvmraidlv
+<span style="color:#808030; ">[</span><span style="color:#0000e6; ">root@public ~</span><span style="color:#808030; ">]</span><span style="color:#696969; "># dd if=/dev/urandom of=/boot/keyfile bs=1K count=1</span>
+<span style="color:#008c00; ">1</span>+<span style="color:#008c00; ">0</span> records <span style="color:#800000; font-weight:bold; ">in</span>
+<span style="color:#008c00; ">1</span>+<span style="color:#008c00; ">0</span> records out
+<span style="color:#008c00; ">1024</span> bytes <span style="color:#800080; ">(</span><span style="color:#008c00; ">1</span><span style="color:#800000; font-weight:bold; ">.</span><span style="color:#008c00; ">0</span> kB, <span style="color:#008c00; ">1</span><span style="color:#800000; font-weight:bold; ">.</span><span style="color:#008c00; ">0</span> KiB<span style="color:#800080; ">)</span> copied, <span style="color:#008c00; ">0</span><span style="color:#800000; font-weight:bold; ">.</span><span style="color:#008c00; ">000336448</span> s, <span style="color:#008c00; ">3</span><span style="color:#800000; font-weight:bold; ">.</span><span style="color:#008c00; ">0</span> <span style="color:#40015a; ">MB/s</span>
+<span style="color:#808030; ">[</span><span style="color:#0000e6; ">root@public ~</span><span style="color:#808030; ">]</span><span style="color:#696969; "># chmod 400 /boot/keyfile</span>
+<span style="color:#808030; ">[</span><span style="color:#0000e6; ">root@public ~</span><span style="color:#808030; ">]</span><span style="color:#696969; "># cryptsetup luksFormat /dev/lvmraidvg/lvmraidlv</span>
 
-WARNING<span style="color:#808030; ">!</span>
-<span style="color:#808030; ">=</span><span style="color:#808030; ">=</span><span style="color:#808030; ">=</span><span style="color:#808030; ">=</span><span style="color:#808030; ">=</span><span style="color:#808030; ">=</span><span style="color:#808030; ">=</span><span style="color:#808030; ">=</span>
-This will overwrite data on <span style="color:#808030; ">/</span>dev<span style="color:#808030; ">/</span>lvmraidvg<span style="color:#808030; ">/</span>lvmraidlv irrevocably<span style="color:#808030; ">.</span>
+WARNING<span style="color:#800000; font-weight:bold; ">!</span>
+========
+This will overwrite data on <span style="color:#40015a; ">/dev/lvmraidvg/lvmraidlv</span> irrevocably<span style="color:#800000; font-weight:bold; ">.</span>
 
-Are you sure<span style="color:#808030; ">?</span> <span style="color:#808030; ">(</span>Type <span style="color:#800000; ">'</span><span style="color:#0000e6; ">yes</span><span style="color:#800000; ">'</span> in capital letters<span style="color:#808030; ">)</span><span style="color:#808030; ">:</span> YES
-Enter passphrase for <span style="color:#808030; ">/</span>dev<span style="color:#808030; ">/</span>lvmraidvg<span style="color:#808030; ">/</span>lvmraidlv<span style="color:#808030; ">:</span>
+Are you sure<span style="color:#808030; ">?</span> <span style="color:#800080; ">(</span>Type <span style="color:#0000e6; ">'yes'</span> <span style="color:#800000; font-weight:bold; ">in</span> capital letters<span style="color:#800080; ">)</span><span style="color:#808030; ">:</span> YES
+Enter passphrase <span style="color:#800000; font-weight:bold; ">for</span> <span style="color:#40015a; ">/dev/lvmraidvg/lvmraidlv</span><span style="color:#808030; ">:</span>
 Verify passphrase<span style="color:#808030; ">:</span>
-<span style="color:#808030; ">[</span>root@public <span style="color:#808030; ">~</span><span style="color:#808030; ">]</span># cryptsetup luksOpen <span style="color:#808030; ">/</span>dev<span style="color:#808030; ">/</span>lvmraidvg<span style="color:#808030; ">/</span>lvmraidlv cryptedpart
-Enter passphrase for <span style="color:#808030; ">/</span>dev<span style="color:#808030; ">/</span>lvmraidvg<span style="color:#808030; ">/</span>lvmraidlv<span style="color:#808030; ">:</span>
-<span style="color:#808030; ">[</span>root@public <span style="color:#808030; ">~</span><span style="color:#808030; ">]</span># cryptsetup luksAddKey <span style="color:#808030; ">/</span>dev<span style="color:#808030; ">/</span>lvmraidvg<span style="color:#808030; ">/</span>lvmraidlv <span style="color:#808030; ">/</span>boot<span style="color:#808030; ">/</span>keyfile
+<span style="color:#808030; ">[</span><span style="color:#0000e6; ">root@public ~</span><span style="color:#808030; ">]</span><span style="color:#696969; "># cryptsetup luksOpen /dev/lvmraidvg/lvmraidlv cryptedpart</span>
+Enter passphrase <span style="color:#800000; font-weight:bold; ">for</span> <span style="color:#40015a; ">/dev/lvmraidvg/lvmraidlv</span><span style="color:#808030; ">:</span>
+<span style="color:#808030; ">[</span><span style="color:#0000e6; ">root@public ~</span><span style="color:#808030; ">]</span><span style="color:#696969; "># cryptsetup luksAddKey /dev/lvmraidvg/lvmraidlv /boot/keyfile</span>
 Enter any existing passphrase<span style="color:#808030; ">:</span>
-<span style="color:#808030; ">[</span>root@public <span style="color:#808030; ">~</span><span style="color:#808030; ">]</span># vi <span style="color:#808030; ">/</span>etc<span style="color:#808030; ">/</span>crypttab
-<span style="color:#808030; ">[</span>root@public <span style="color:#808030; ">~</span><span style="color:#808030; ">]</span># cat <span style="color:#808030; ">/</span>etc<span style="color:#808030; ">/</span>crypttab
-cryptedpart <span style="color:#808030; ">/</span>dev<span style="color:#808030; ">/</span>lvmraidvg<span style="color:#808030; ">/</span>lvmraidlv <span style="color:#808030; ">/</span>boot<span style="color:#808030; ">/</span>keyfile
-<span style="color:#808030; ">[</span>root@public <span style="color:#808030; ">~</span><span style="color:#808030; ">]</span># mkfs<span style="color:#008c00; ">.</span>ext4 <span style="color:#808030; ">/</span>dev<span style="color:#808030; ">/</span>mapper<span style="color:#808030; ">/</span>cryptedpart
-mke2fs <span style="color:#008c00; ">1.45</span><span style="color:#008c00; ">.6</span> <span style="color:#808030; ">(</span><span style="color:#008c00; ">20</span><span style="color:#808030; ">-</span>Mar<span style="color:#808030; ">-</span><span style="color:#008c00; ">2020</span><span style="color:#808030; ">)</span>
+<span style="color:#808030; ">[</span><span style="color:#0000e6; ">root@public ~</span><span style="color:#808030; ">]</span><span style="color:#696969; "># vi /etc/crypttab</span>
+<span style="color:#808030; ">[</span><span style="color:#0000e6; ">root@public ~</span><span style="color:#808030; ">]</span><span style="color:#696969; "># cat /etc/crypttab</span>
+cryptedpart <span style="color:#40015a; ">/dev/lvmraidvg/lvmraidlv</span> <span style="color:#40015a; ">/boot/keyfile</span>
+<span style="color:#808030; ">[</span><span style="color:#0000e6; ">root@public ~</span><span style="color:#808030; ">]</span><span style="color:#696969; "># mkfs.ext4 /dev/mapper/cryptedpart</span>
+mke2fs <span style="color:#008c00; ">1</span><span style="color:#800000; font-weight:bold; ">.</span><span style="color:#008c00; ">45</span><span style="color:#800000; font-weight:bold; ">.</span><span style="color:#008c00; ">6</span> <span style="color:#800080; ">(</span><span style="color:#008c00; ">20</span>-Mar-<span style="color:#008c00; ">2020</span><span style="color:#800080; ">)</span>
 Creating filesystem with <span style="color:#008c00; ">2089984</span> 4k blocks and <span style="color:#008c00; ">523264</span> inodes
-Filesystem UUID<span style="color:#808030; ">:</span> b42b22ff<span style="color:#808030; ">-</span>f0bb<span style="color:#808030; ">-</span>4ef2<span style="color:#808030; ">-</span><span style="color:#008c00; ">8290</span><span style="color:#808030; ">-</span>35e0c66fb8f7
+Filesystem UUID<span style="color:#808030; ">:</span> b42b22ff-f0bb-4ef2-<span style="color:#008c00; ">8290</span>-35e0c66fb8f7
 Superblock backups stored on blocks<span style="color:#808030; ">:</span>
-<span style="color:#008c00; ">32768</span><span style="color:#808030; ">,</span> <span style="color:#008c00; ">98304</span><span style="color:#808030; ">,</span> <span style="color:#008c00; ">163840</span><span style="color:#808030; ">,</span> <span style="color:#008c00; ">229376</span><span style="color:#808030; ">,</span> <span style="color:#008c00; ">294912</span><span style="color:#808030; ">,</span> <span style="color:#008c00; ">819200</span><span style="color:#808030; ">,</span> <span style="color:#008c00; ">884736</span><span style="color:#808030; ">,</span> <span style="color:#008c00; ">1605632</span>
+<span style="color:#008c00; ">32768</span>, <span style="color:#008c00; ">98304</span>, <span style="color:#008c00; ">163840</span>, <span style="color:#008c00; ">229376</span>, <span style="color:#008c00; ">294912</span>, <span style="color:#008c00; ">819200</span>, <span style="color:#008c00; ">884736</span>, <span style="color:#008c00; ">1605632</span>
 
-Allocating group tables<span style="color:#808030; ">:</span> done
-Writing inode tables<span style="color:#808030; ">:</span> done
-Creating journal <span style="color:#808030; ">(</span><span style="color:#008c00; ">16384</span> blocks<span style="color:#808030; ">)</span><span style="color:#808030; ">:</span> done
-Writing superblocks and filesystem accounting information<span style="color:#808030; ">:</span> done
+Allocating group tables<span style="color:#808030; ">:</span> <span style="color:#800000; font-weight:bold; ">done</span>
+Writing inode tables<span style="color:#808030; ">:</span> <span style="color:#800000; font-weight:bold; ">done</span>
+Creating journal <span style="color:#800080; ">(</span><span style="color:#008c00; ">16384</span> blocks<span style="color:#800080; ">)</span><span style="color:#808030; ">:</span> <span style="color:#800000; font-weight:bold; ">done</span>
+Writing superblocks and filesystem accounting information<span style="color:#808030; ">:</span> <span style="color:#800000; font-weight:bold; ">done</span>
 
-<span style="color:#808030; ">[</span>root@public <span style="color:#808030; ">~</span><span style="color:#808030; ">]</span># mkdir <span style="color:#808030; ">/</span>secured
-<span style="color:#808030; ">[</span>root@public <span style="color:#808030; ">~</span><span style="color:#808030; ">]</span># vi <span style="color:#808030; ">/</span>etc<span style="color:#808030; ">/</span>fstab
-<span style="color:#808030; ">[</span>root@public <span style="color:#808030; ">~</span><span style="color:#808030; ">]</span># cat <span style="color:#808030; ">/</span>etc<span style="color:#808030; ">/</span>fstab
+<span style="color:#808030; ">[</span><span style="color:#0000e6; ">root@public ~</span><span style="color:#808030; ">]</span><span style="color:#696969; "># mkdir /secured</span>
+<span style="color:#808030; ">[</span><span style="color:#0000e6; ">root@public ~</span><span style="color:#808030; ">]</span><span style="color:#696969; "># vi /etc/fstab</span>
+<span style="color:#808030; ">[</span><span style="color:#0000e6; ">root@public ~</span><span style="color:#808030; ">]</span><span style="color:#696969; "># cat /etc/fstab</span>
 
-#
-# <span style="color:#808030; ">/</span>etc<span style="color:#808030; ">/</span>fstab
-# Created by anaconda on Thu Oct <span style="color:#008c00; ">10</span> <span style="color:#8745a0; ">19:59:02</span> <span style="color:#008c00; ">2019</span>
-#
-# Accessible filesystems<span style="color:#808030; ">,</span> by reference<span style="color:#808030; ">,</span> are maintained under <span style="color:#800000; ">'</span><span style="color:#0000e6; ">/dev/disk/</span><span style="color:#800000; ">'</span><span style="color:#808030; ">.</span>
-# See man pages fstab<span style="color:#808030; ">(</span><span style="color:#008c00; ">5</span><span style="color:#808030; ">)</span><span style="color:#808030; ">,</span> findfs<span style="color:#808030; ">(</span><span style="color:#008c00; ">8</span><span style="color:#808030; ">)</span><span style="color:#808030; ">,</span> mount<span style="color:#808030; ">(</span><span style="color:#008c00; ">8</span><span style="color:#808030; ">)</span> and<span style="color:#808030; ">/</span>or blkid<span style="color:#808030; ">(</span><span style="color:#008c00; ">8</span><span style="color:#808030; ">)</span> for more info<span style="color:#808030; ">.</span>
-#
-# After editing this file<span style="color:#808030; ">,</span> run <span style="color:#800000; ">'</span><span style="color:#0000e6; ">systemctl daemon-reload</span><span style="color:#800000; ">'</span> to update systemd
-# units generated from this file<span style="color:#808030; ">.</span>
-#
-<span style="color:#808030; ">/</span>dev<span style="color:#808030; ">/</span>mapper<span style="color:#808030; ">/</span>cl<span style="color:#808030; ">-</span>root <span style="color:#808030; ">/</span> xfs defaults <span style="color:#008c00; ">0</span> <span style="color:#008c00; ">0</span>
-UUID<span style="color:#808030; ">=</span>de5581b0<span style="color:#808030; ">-</span>03a4<span style="color:#808030; ">-</span>4e5d<span style="color:#808030; ">-</span>9d5c<span style="color:#808030; ">-</span>ea380355dbde <span style="color:#808030; ">/</span>boot ext4 defaults <span style="color:#008c00; ">1</span> <span style="color:#008c00; ">2</span>
-<span style="color:#808030; ">/</span>dev<span style="color:#808030; ">/</span>mapper<span style="color:#808030; ">/</span>cl<span style="color:#808030; ">-</span>swap swap swap defaults <span style="color:#008c00; ">0</span> <span style="color:#008c00; ">0</span>
-<span style="color:#808030; ">/</span>dev<span style="color:#808030; ">/</span>mapper<span style="color:#808030; ">/</span>cryptedpart <span style="color:#808030; ">/</span>secured ext4 defaults<span style="color:#008c00; ">,</span>usrquota<span style="color:#008c00; ">,</span>grpquota <span style="color:#008c00; ">0</span> <span style="color:#008c00; ">0</span>
-<span style="color:#808030; ">[</span>root@public <span style="color:#808030; ">~</span><span style="color:#808030; ">]</span># mount <span style="color:#808030; ">-</span>a
-<span style="color:#808030; ">[</span>root@public <span style="color:#808030; ">~</span><span style="color:#808030; ">]</span># ls <span style="color:#808030; ">-</span>l <span style="color:#808030; ">/</span>secured<span style="color:#808030; ">/</span>
+<span style="color:#696969; ">#</span>
+<span style="color:#696969; "># /etc/fstab</span>
+<span style="color:#696969; "># Created by anaconda on Thu Oct 10 19:59:02 2019</span>
+<span style="color:#696969; ">#</span>
+<span style="color:#696969; "># Accessible filesystems, by reference, are maintained under '/dev/disk/'.</span>
+<span style="color:#696969; "># See man pages fstab(5), findfs(8), mount(8) and/or blkid(8) for more info.</span>
+<span style="color:#696969; ">#</span>
+<span style="color:#696969; "># After editing this file, run 'systemctl daemon-reload' to update systemd</span>
+<span style="color:#696969; "># units generated from this file.</span>
+<span style="color:#696969; ">#</span>
+<span style="color:#40015a; ">/dev/mapper/cl-root</span> / xfs defaults <span style="color:#008c00; ">0</span> <span style="color:#008c00; ">0</span>
+<span style="color:#797997; ">UUID</span><span style="color:#808030; ">=</span>de5581b0-03a4-4e5d-9d5c-ea380355dbde <span style="color:#40015a; ">/boot</span> ext4 defaults <span style="color:#008c00; ">1</span> <span style="color:#008c00; ">2</span>
+<span style="color:#40015a; ">/dev/mapper/cl-swap</span> swap swap defaults <span style="color:#008c00; ">0</span> <span style="color:#008c00; ">0</span>
+<span style="color:#40015a; ">/dev/mapper/cryptedpart</span> <span style="color:#40015a; ">/secured</span> ext4 defaults,usrquota,grpquota <span style="color:#008c00; ">0</span> <span style="color:#008c00; ">0</span>
+<span style="color:#808030; ">[</span><span style="color:#0000e6; ">root@public ~</span><span style="color:#808030; ">]</span><span style="color:#696969; "># mount -a</span>
+<span style="color:#808030; ">[</span><span style="color:#0000e6; ">root@public ~</span><span style="color:#808030; ">]</span><span style="color:#696969; "># ls -l /secured/</span>
 total <span style="color:#008c00; ">16</span>
-drwx<span style="color:#808030; ">-</span><span style="color:#808030; ">-</span><span style="color:#808030; ">-</span><span style="color:#808030; ">-</span><span style="color:#808030; ">-</span><span style="color:#808030; ">-</span><span style="color:#808030; ">.</span> <span style="color:#008c00; ">2</span> root root <span style="color:#008c00; ">16384</span> Apr <span style="color:#008c00; ">9</span> <span style="color:#8745a0; ">03:02</span> lost<span style="color:#808030; ">+</span>found
-<span style="color:#808030; ">[</span>root@localhost <span style="color:#808030; ">~</span><span style="color:#808030; ">]</span># semanage fcontext <span style="color:#808030; ">-</span>a <span style="color:#808030; ">-</span>e <span style="color:#808030; ">/</span> <span style="color:#808030; ">/</span>secured
-<span style="color:#808030; ">[</span>root@localhost <span style="color:#808030; ">~</span><span style="color:#808030; ">]</span># ls <span style="color:#808030; ">-</span>dZ <span style="color:#808030; ">/</span>
-system<span style="color:#808030; ">_</span>u<span style="color:#808030; ">:</span>object<span style="color:#808030; ">_</span>r<span style="color:#808030; ">:</span>root<span style="color:#808030; ">_</span>t<span style="color:#808030; ">:</span>s0 <span style="color:#808030; ">/</span>
-<span style="color:#808030; ">[</span>root@localhost <span style="color:#808030; ">~</span><span style="color:#808030; ">]</span># ls <span style="color:#808030; ">-</span>dZ <span style="color:#808030; ">/</span>secured<span style="color:#808030; ">/</span>
-system<span style="color:#808030; ">_</span>u<span style="color:#808030; ">:</span>object<span style="color:#808030; ">_</span>r<span style="color:#808030; ">:</span>unlabeled<span style="color:#808030; ">_</span>t<span style="color:#808030; ">:</span>s0 <span style="color:#808030; ">/</span>secured<span style="color:#808030; ">/</span>
-<span style="color:#808030; ">[</span>root@localhost <span style="color:#808030; ">~</span><span style="color:#808030; ">]</span># touch <span style="color:#808030; ">/</span><span style="color:#808030; ">.</span>autorelabel
-<span style="color:#808030; ">[</span>root@localhost <span style="color:#808030; ">~</span><span style="color:#808030; ">]</span># reboot
-<span style="color:#808030; ">[</span>root@localhost <span style="color:#808030; ">~</span><span style="color:#808030; ">]</span># ls <span style="color:#808030; ">-</span>dZ <span style="color:#808030; ">/</span>secured<span style="color:#808030; ">/</span>
-system<span style="color:#808030; ">_</span>u<span style="color:#808030; ">:</span>object<span style="color:#808030; ">_</span>r<span style="color:#808030; ">:</span>root<span style="color:#808030; ">_</span>t<span style="color:#808030; ">:</span>s0 <span style="color:#808030; ">/</span>secured<span style="color:#808030; ">/</span>
-<span style="color:#808030; ">[</span>root@localhost <span style="color:#808030; ">~</span><span style="color:#808030; ">]</span># mkdir <span style="color:#808030; ">/</span>secured<span style="color:#808030; ">/</span>home
-<span style="color:#808030; ">[</span>root@localhost <span style="color:#808030; ">~</span><span style="color:#808030; ">]</span># ls <span style="color:#808030; ">-</span>Z <span style="color:#808030; ">/</span>secured<span style="color:#808030; ">/</span>
-unconfined<span style="color:#808030; ">_</span>u<span style="color:#808030; ">:</span>object<span style="color:#808030; ">_</span>r<span style="color:#808030; ">:</span>default<span style="color:#808030; ">_</span>t<span style="color:#808030; ">:</span>s0 home system<span style="color:#808030; ">_</span>u<span style="color:#808030; ">:</span>object<span style="color:#808030; ">_</span>r<span style="color:#808030; ">:</span>lost<span style="color:#808030; ">_</span>found<span style="color:#808030; ">_</span>t<span style="color:#808030; ">:</span>s0 lost<span style="color:#808030; ">+</span>found
-<span style="color:#808030; ">[</span>root@localhost <span style="color:#808030; ">~</span><span style="color:#808030; ">]</span># touch <span style="color:#808030; ">/</span><span style="color:#808030; ">.</span>autorelabel
-<span style="color:#808030; ">[</span>root@localhost <span style="color:#808030; ">~</span><span style="color:#808030; ">]</span># reboot
-<span style="color:#808030; ">[</span>root@localhost <span style="color:#808030; ">~</span><span style="color:#808030; ">]</span># ls <span style="color:#808030; ">-</span>Z <span style="color:#808030; ">/</span>secured
-unconfined<span style="color:#808030; ">_</span>u<span style="color:#808030; ">:</span>object<span style="color:#808030; ">_</span>r<span style="color:#808030; ">:</span>home<span style="color:#808030; ">_</span>root<span style="color:#808030; ">_</span>t<span style="color:#808030; ">:</span>s0 home system<span style="color:#808030; ">_</span>u<span style="color:#808030; ">:</span>object<span style="color:#808030; ">_</span>r<span style="color:#808030; ">:</span>lost<span style="color:#808030; ">_</span>found<span style="color:#808030; ">_</span>t<span style="color:#808030; ">:</span>s0 lost<span style="color:#808030; ">+</span>found
-<span style="color:#808030; ">[</span>root@public <span style="color:#808030; ">~</span><span style="color:#808030; ">]</span># useradd <span style="color:#808030; ">-</span>d <span style="color:#808030; ">/</span>secured<span style="color:#808030; ">/</span>home<span style="color:#808030; ">/</span>sysadmin <span style="color:#808030; ">-</span>u <span style="color:#008c00; ">10000</span> <span style="color:#808030; ">-</span>s <span style="color:#808030; ">/</span>bin<span style="color:#808030; ">/</span>zsh abel
-<span style="color:#808030; ">[</span>root@public <span style="color:#808030; ">~</span><span style="color:#808030; ">]</span># ls <span style="color:#808030; ">-</span>lZ <span style="color:#808030; ">/</span>secured<span style="color:#808030; ">/</span>home<span style="color:#808030; ">/</span>
+drwx------<span style="color:#800000; font-weight:bold; ">.</span> <span style="color:#008c00; ">2</span> root root <span style="color:#008c00; ">16384</span> Apr <span style="color:#008c00; ">9</span> <span style="color:#008c00; ">03</span><span style="color:#808030; ">:</span><span style="color:#008c00; ">02</span> lost+found
+<span style="color:#808030; ">[</span><span style="color:#0000e6; ">root@localhost ~</span><span style="color:#808030; ">]</span><span style="color:#696969; "># semanage fcontext -a -e / /secured</span>
+<span style="color:#808030; ">[</span><span style="color:#0000e6; ">root@localhost ~</span><span style="color:#808030; ">]</span><span style="color:#696969; "># ls -dZ /</span>
+system_u<span style="color:#808030; ">:</span>object_r<span style="color:#808030; ">:</span>root_t<span style="color:#808030; ">:</span>s0 /
+<span style="color:#808030; ">[</span><span style="color:#0000e6; ">root@localhost ~</span><span style="color:#808030; ">]</span><span style="color:#696969; "># ls -dZ /secured/</span>
+system_u<span style="color:#808030; ">:</span>object_r<span style="color:#808030; ">:</span>unlabeled_t<span style="color:#808030; ">:</span>s0 <span style="color:#40015a; ">/secured</span><span style="color:#40015a; ">/</span>
+<span style="color:#808030; ">[</span><span style="color:#0000e6; ">root@localhost ~</span><span style="color:#808030; ">]</span><span style="color:#696969; "># touch /.autorelabel</span>
+<span style="color:#808030; ">[</span><span style="color:#0000e6; ">root@localhost ~</span><span style="color:#808030; ">]</span><span style="color:#696969; "># reboot</span>
+<span style="color:#808030; ">[</span><span style="color:#0000e6; ">root@localhost ~</span><span style="color:#808030; ">]</span><span style="color:#696969; "># ls -dZ /secured/</span>
+system_u<span style="color:#808030; ">:</span>object_r<span style="color:#808030; ">:</span>root_t<span style="color:#808030; ">:</span>s0 <span style="color:#40015a; ">/secured</span><span style="color:#40015a; ">/</span>
+<span style="color:#808030; ">[</span><span style="color:#0000e6; ">root@localhost ~</span><span style="color:#808030; ">]</span><span style="color:#696969; "># mkdir /secured/home</span>
+<span style="color:#808030; ">[</span><span style="color:#0000e6; ">root@localhost ~</span><span style="color:#808030; ">]</span><span style="color:#696969; "># ls -Z /secured/</span>
+unconfined_u<span style="color:#808030; ">:</span>object_r<span style="color:#808030; ">:</span>default_t<span style="color:#808030; ">:</span>s0 home system_u<span style="color:#808030; ">:</span>object_r<span style="color:#808030; ">:</span>lost_found_t<span style="color:#808030; ">:</span>s0 lost+found
+<span style="color:#808030; ">[</span><span style="color:#0000e6; ">root@localhost ~</span><span style="color:#808030; ">]</span><span style="color:#696969; "># touch /.autorelabel</span>
+<span style="color:#808030; ">[</span><span style="color:#0000e6; ">root@localhost ~</span><span style="color:#808030; ">]</span><span style="color:#696969; "># reboot</span>
+<span style="color:#808030; ">[</span><span style="color:#0000e6; ">root@localhost ~</span><span style="color:#808030; ">]</span><span style="color:#696969; "># ls -Z /secured</span>
+unconfined_u<span style="color:#808030; ">:</span>object_r<span style="color:#808030; ">:</span>home_root_t<span style="color:#808030; ">:</span>s0 home system_u<span style="color:#808030; ">:</span>object_r<span style="color:#808030; ">:</span>lost_found_t<span style="color:#808030; ">:</span>s0 lost+found
+<span style="color:#808030; ">[</span><span style="color:#0000e6; ">root@public ~</span><span style="color:#808030; ">]</span><span style="color:#696969; "># useradd -d /secured/home/sysadmin -u 10000 -s /bin/zsh abel</span>
+<span style="color:#808030; ">[</span><span style="color:#0000e6; ">root@public ~</span><span style="color:#808030; ">]</span><span style="color:#696969; "># ls -lZ /secured/home/</span>
 total <span style="color:#008c00; ">4</span>
-drwx<span style="color:#808030; ">-</span><span style="color:#808030; ">-</span><span style="color:#808030; ">-</span><span style="color:#808030; ">-</span><span style="color:#808030; ">-</span><span style="color:#808030; ">-</span><span style="color:#808030; ">.</span> <span style="color:#008c00; ">2</span> abel abel unconfined<span style="color:#808030; ">_</span>u<span style="color:#808030; ">:</span>object<span style="color:#808030; ">_</span>r<span style="color:#808030; ">:</span>user<span style="color:#808030; ">_</span>home<span style="color:#808030; ">_</span>dir<span style="color:#808030; ">_</span>t<span style="color:#808030; ">:</span>s0 <span style="color:#008c00; ">4096</span> Apr <span style="color:#008c00; ">9</span> <span style="color:#8745a0; ">08:18</span> sysadmin
-<span style="color:#808030; ">[</span>root@public <span style="color:#808030; ">~</span><span style="color:#808030; ">]</span># grep abel <span style="color:#808030; ">/</span>etc<span style="color:#808030; ">/</span>passwd
-abelx10000<span style="color:#808030; ">:</span><span style="color:#008c00; ">10000</span><span style="color:#808030; ">:</span><span style="color:#808030; ">:</span><span style="color:#808030; ">/</span>secured<span style="color:#808030; ">/</span>home<span style="color:#808030; ">/</span>sysadmin<span style="color:#808030; ">:</span><span style="color:#808030; ">/</span>bin<span style="color:#808030; ">/</span>zsh
-<span style="color:#808030; ">[</span>root@public <span style="color:#808030; ">~</span><span style="color:#808030; ">]</span># groupadd <span style="color:#808030; ">-</span>g <span style="color:#008c00; ">20000</span> administrators
-<span style="color:#808030; ">[</span>root@public <span style="color:#808030; ">~</span><span style="color:#808030; ">]</span># grep administrators <span style="color:#808030; ">/</span>etc<span style="color:#808030; ">/</span>group
+drwx------<span style="color:#800000; font-weight:bold; ">.</span> <span style="color:#008c00; ">2</span> abel abel unconfined_u<span style="color:#808030; ">:</span>object_r<span style="color:#808030; ">:</span>user_home_dir_t<span style="color:#808030; ">:</span>s0 <span style="color:#008c00; ">4096</span> Apr <span style="color:#008c00; ">9</span> <span style="color:#008c00; ">08</span><span style="color:#808030; ">:</span><span style="color:#008c00; ">18</span> sysadmin
+<span style="color:#808030; ">[</span><span style="color:#0000e6; ">root@public ~</span><span style="color:#808030; ">]</span><span style="color:#696969; "># grep abel /etc/passwd</span>
+abelx10000<span style="color:#808030; ">:</span><span style="color:#008c00; ">10000</span><span style="color:#808030; ">:</span><span style="color:#808030; ">:</span><span style="color:#40015a; ">/secured/home/sysadmin</span><span style="color:#808030; ">:</span><span style="color:#40015a; ">/bin/zsh</span>
+<span style="color:#808030; ">[</span><span style="color:#0000e6; ">root@public ~</span><span style="color:#808030; ">]</span><span style="color:#696969; "># groupadd -g 20000 administrators</span>
+<span style="color:#808030; ">[</span><span style="color:#0000e6; ">root@public ~</span><span style="color:#808030; ">]</span><span style="color:#696969; "># grep administrators /etc/group</span>
 administratorsx20000<span style="color:#808030; ">:</span>
-<span style="color:#808030; ">[</span>root@public <span style="color:#808030; ">~</span><span style="color:#808030; ">]</span># usermod <span style="color:#808030; ">-</span>aG administrators abel
-<span style="color:#808030; ">[</span>root@public <span style="color:#808030; ">~</span><span style="color:#808030; ">]</span># grep administrators <span style="color:#808030; ">/</span>etc<span style="color:#808030; ">/</span>group
+<span style="color:#808030; ">[</span><span style="color:#0000e6; ">root@public ~</span><span style="color:#808030; ">]</span><span style="color:#696969; "># usermod -aG administrators abel</span>
+<span style="color:#808030; ">[</span><span style="color:#0000e6; ">root@public ~</span><span style="color:#808030; ">]</span><span style="color:#696969; "># grep administrators /etc/group</span>
 administratorsx20000<span style="color:#808030; ">:</span>abel
 </pre>
