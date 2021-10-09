@@ -14,10 +14,10 @@ find /path -name pattern, the pattern is globed file name
 [root@server ~]# find /etc -name pa?swd
 /etc/pam.d/passwd
 /etc/passwd
+* matches any string including the empty string
 [root@server ~]# find /etc -name pa*wd
 /etc/pam.d/passwd
 /etc/passwd
-* matches any string including the empty string
 [...] expression matches a single character
 [!..] expression matches a single character that is not in the expression
 [.-.] range of characters matches a single character
