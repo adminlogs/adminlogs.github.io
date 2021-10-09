@@ -21,3 +21,6 @@ find /path -name pattern, the pattern is globed file name
 [...] expression matches a single character
 [!..] expression matches a single character that is not in the expression
 [.-.] range of characters matches a single character
+find /path -perm mode fqiles permissions are exactly mode (octal or symbolic)
+find /path -perm -mode the mode permissions are all set for the file (octal or symbolic)
+find /path -perm /mode any of the permission bits mode are set for the file
