@@ -1,10 +1,23 @@
-find -atime n Files were last accessed n*24 hoursago
-find -amin n Files were last accessed n minutes ago
-find -mtime n Files were last modified n*24 hoursago
-find -mmin n Files were last modified n minutes ago
-find -ctime n Files were last changed n*24 hoursago
-find -cmin n Files were last changed n minutes ago
+find /path -atime n Files were last accessed n*24 hoursago
+find /path -amin n Files were last accessed n minutes ago
+find /path -mtime n Files were last modified n*24 hoursago
+find /path -mmin n Files were last modified n minutes ago
+find /path -ctime n Files were last changed n*24 hoursago
+find /path -cmin n Files were last changed n minutes ago
 Numeric arguments can be specified as
 +n     for greater than n
 -n     for less than n
 n      for exactly n
+find /path -type b|c|d|f||l|p|s
+find /path -name pattern, the pattern is globed file name 
+? matches any single character
+[root@server ~]# find /etc -name pa?swd
+/etc/pam.d/passwd
+/etc/passwd
+[root@server ~]# find /etc -name pa*wd
+/etc/pam.d/passwd
+/etc/passwd
+* matches any string including the empty string
+[...] expression matches a single character
+[!..] expression matches a single character that is not in the expression
+[.-.] range of characters matches a single character
