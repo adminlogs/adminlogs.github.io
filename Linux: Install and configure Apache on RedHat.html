@@ -5,7 +5,7 @@ the configuration files are located in the <b>/etc/httpd/</b> directory and the 
 generate autosigned certificate with openssl
 [root@localhost ~]# openssl genrsa -out /etc/pki/tls/private/https.key 2048
 [root@localhost ~]# openssl req -utf8 -new -key /etc/pkit/tls/private/https.key -out /etc/pki/tls/private/https.csr
-[root@localhost ~]# openssl x509 -req -signkey /etc/pki/tls/private/https.key -in /etc/pki/tls/private/https.csr -out /etc/pki/tls/certs/https.crt
+[root@localhost ~]# openssl x509 -req -days 365 -signkey /etc/pki/tls/private/https.key -in /etc/pki/tls/private/https.csr -out /etc/pki/tls/certs/https.crt
 root@localhost ~]# vi /etc/httpd/conf.d/ssl.conf
 #
 # When we also provide SSL we have to listen to the 
