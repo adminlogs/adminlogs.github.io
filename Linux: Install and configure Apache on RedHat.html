@@ -3,7 +3,6 @@
 the configuration files are located in the <b>/etc/httpd/</b> directory and the data files are located in <b>/var/www/</b>.</br>
 [root@localhost ~]# yum install -y mod_ssl
 generate autosigned certificate with openssl
-<pre>
 [root@localhost ~]# openssl genrsa -out /etc/pki/tls/private/https.key 2048
 [root@localhost ~]# openssl req -utf8 -new -key /etc/pkit/tls/private/https.key -out /etc/pki/tls/private/https.csr
 [root@localhost ~]# openssl x509 -req -signkey /etc/pki/tls/private/https.key -in /etc/pki/tls/private/https.csr -out /etc/pki/tls/certs/https.crt
@@ -210,4 +209,3 @@ CustomLog logs/ssl_request_log \
           "%t %h %{SSL_PROTOCOL}x %{SSL_CIPHER}x \"%r\" %b"
 
 </VirtualHost>
-</pre>
