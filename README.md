@@ -1,1 +1,1 @@
-# adminlogs.github.io
+adminlogs.github.io is a free blog.
