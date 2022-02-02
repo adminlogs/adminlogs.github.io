@@ -209,3 +209,20 @@ CustomLog logs/ssl_request_log \
           "%t %h %{SSL_PROTOCOL}x %{SSL_CIPHER}x \"%r\" %b"
 
 </VirtualHost>
+
+yum install -y haproxy
+vi /etc/haproxy/haproxy.conf
+#---------------------------------------------------------------------
+# main frontend which proxys to the backends
+#---------------------------------------------------------------------
+frontend main
+    bind *:8080:
+    default_backend             www-adminlabs
+
+#---------------------------------------------------------------------
+# round robin balancing between the various backends
+#---------------------------------------------------------------------
+backend www-adminlabs
+    balance     roundrobin
+    server  node10 192.168.254.10:80 check
+    server  node20 192.168.254.20:80 check
