@@ -15,3 +15,15 @@ ciscoasa&gt;
 <p><strong>Security level 0</strong> is the lowest trusted security level and it is assigned by default to the <strong>outside</strong> interface of the firewall.</p>
 <p><strong>Security levels 1 to 99</strong> can be assigned to perimeter security zones (DMZ Zone, Management Zone, Web Servers Zone ect).</p>
 <p><strong>Security level 100</strong> is the most trusted security level and it is assigned by default to the <strong>inside</strong> interface on the firewall.</p>
+<h3>Securing access to the ASA:</h3>
+<h4>Configure a privileged level password:</h4>
+<p>By default there is no password for accessing the ASA firewall, the first step in to configure privileged level password.</p>
+<pre>ciscoasa(config)# enable password <em>mysecretpassword</em></pre>
+<h4>Configure firewall hostname and domain-name:</h4>
+<p>The default hostname of the Cisco ASA is ciscoasa without domain-name configured.</p>
+<pre>ciscoasa(config)# hostname northen-fw
+northern-fw(config)# end
+northern-fw# show hostname
+northern-fw
+northern-fw# show hostname fqdn
+northern-fw.adminlogs.local</pre>
