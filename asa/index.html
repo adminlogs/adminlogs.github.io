@@ -27,3 +27,25 @@ northern-fw# show hostname
 northern-fw
 northern-fw# show hostname fqdn
 northern-fw.adminlogs.local</pre>
+<h4>Enable Remote Command Line Management:</h4>
+<pre>northern-fw(config)# username <em>admin</em> privilege <em>15</em> password <em>p@$w0rd</em>
+northern-fw(config)# aaa authentication ssh console LOCAL
+northern-fw(config)# ssh version 2
+northern-fw(config)# ssh <em>192.168.40.0 255.255.255.0 inside</em>
+northern-fw(config)# crypto key generate rsa general-keys modulus <em>2048
+</em>northern-fw(config)# interface GigabitEthernet0/0
+northern-fw(config-if)# nameif <em>inside</em>
+northern-fw(config-if)# ip address <em>192.168.40.250 255.255.255.0</em>
+northern-fw(config-if)# security-level 100 ⇐ By default “inside” interface is sec-level 100
+northern-fw(config-if)# no shutdown
+northern-fw(config-if)# end
+northern-fw(config)# interface GigabitEthernet0/1
+northern-fw(config-if)# nameif <em>outside</em>
+northern-fw(config-if)# ip address <em>10.10.10.253 255.255.255.0</em>
+northern-fw(config-if)# security-level 0 ⇐ By default “outside” interface is sec-level 0
+northern-fw(config-if)# no shutdown
+northern-fw(config-if)# end
+northern-fw(config)# dns domain-lookup outside 
+northern-fw(config)# dns name-server 1.1.1.1
+northern-fw(config)# route outside 0.0.0.0 0.0.0.0 10.10.10.254
+</pre>
