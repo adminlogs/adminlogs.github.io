@@ -1,0 +1,17 @@
+<pre>ciscoasa&gt; enable ← Unprivileged Mode
+password: ← Enter a password here (initially its blank)
+ciscoasa# configure terminal ← Privileged Mode
+ciscoasa(config)# ← Configuration Mode
+ciscoasa(config)# exit ← Back to Privileged Mode
+ciscoasa# exit ← Back to Unprivileged Mode
+ciscoasa&gt;
+</pre>
+<p><strong>running-config</strong> is stored in <strong>RAM</strong><br>
+<strong>startup-config</strong> is stored in <strong>Flash</strong></p>
+<p>To save the current running-config we can use one of these two commands:</p>
+<pre>ciscoasa# copy running-config startup-config</pre>
+<pre>ciscoasa# write memory</pre>
+<p>ASA mage is a compressed binary file pre-installed on the Flash of the device. The image get decompressed into RAM when the appliance boots-up. Security level is assigned to interfaces(physical/logical sub-interfaces) and it’s a number from 1 to 100 designating how trusted an interface is relative to another interface on the appliance. An interface with with higher security level can access an interface with a lower security level. On the other hand an interface with a lower security level cannot access an interface with a higher security level , without the explicit permission of a security rule (ACL).</p>
+<p><strong>Security level 0</strong> is the lowest trusted security level and it is assigned by default to the <strong>outside</strong> interface of the firewall.</p>
+<p><strong>Security levels 1 to 99</strong> can be assigned to perimeter security zones (DMZ Zone, Management Zone, Web Servers Zone ect).</p>
+<p><strong>Security level 100</strong> is the most trusted security level and it is assigned by default to the <strong>inside</strong> interface on the firewall.</p>
