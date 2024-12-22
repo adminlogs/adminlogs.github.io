@@ -1,3 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title></title>
+</head>
+<body>
 <pre>ciscoasa&gt; enable ← Unprivileged Mode
 password: ← Enter a password here (initially its blank)
 ciscoasa# configure terminal ← Privileged Mode
@@ -6,7 +11,7 @@ ciscoasa(config)# exit ← Back to Privileged Mode
 ciscoasa# exit ← Back to Unprivileged Mode
 ciscoasa&gt;
 </pre>
-<p><strong>running-config</strong> is stored in <strong>RAM</strong><br>
+<p><strong>running-config</strong> is stored in <strong>RAM</strong><br/>
 <strong>startup-config</strong> is stored in <strong>Flash</strong></p>
 <p>To save the current running-config we can use one of these two commands:</p>
 <pre>ciscoasa# copy running-config startup-config</pre>
@@ -24,9 +29,13 @@ ciscoasa&gt;
 <pre>ciscoasa(config)# hostname northen-fw
 northern-fw(config)# end
 northern-fw# show hostname
+northern-fwnorthern-fw# show hostname fqdn
 northern-fw
+northern-fw# configure terminal
+northern-fw(config)# domain-name adminlogs.local
+northern-fw(config)# exit
 northern-fw# show hostname fqdn
-northern-fw.adminlogs.local</pre>
+northern-fw.adminlogs.local<br/></pre>
 <h4>Enable Remote Command Line Management:</h4>
 <pre>northern-fw(config)# username <em>admin</em> privilege <em>15</em> password <em>p@$w0rd</em>
 northern-fw(config)# aaa authentication ssh console LOCAL
@@ -49,3 +58,5 @@ northern-fw(config)# dns domain-lookup outside
 northern-fw(config)# dns name-server 1.1.1.1
 northern-fw(config)# route outside 0.0.0.0 0.0.0.0 10.10.10.254
 </pre>
+</body>
+</html>
