@@ -1,1 +1,122 @@
+Cisco Adaptive Security Appliance Software Version 9.14(1)30 
 
+ciscoasa> enable
+The enable password is not set.  Please set it now.
+Enter  Password: ********
+Repeat Password: ********
+Note: Save your configuration so that the password persists across reboots
+("write memory" or "copy running-config startup-config").
+ciscoasa# configure terminal
+ciscoasa(config)# domain-name adminlabs.local
+ciscoasa(config)# hostname firewall
+firewall(config)# show interface ip brief
+Interface                  IP-Address      OK? Method Status                Protocol
+GigabitEthernet0/0         unassigned      YES unset  administratively down down
+GigabitEthernet0/1         unassigned      YES unset  administratively down down
+GigabitEthernet0/2         unassigned      YES unset  administratively down down
+GigabitEthernet0/3         unassigned      YES unset  administratively down down
+GigabitEthernet0/4         unassigned      YES unset  administratively down down
+GigabitEthernet0/5         unassigned      YES unset  administratively down down
+GigabitEthernet0/6         unassigned      YES unset  administratively down down
+Internal-Data0/0           169.254.1.1     YES unset  up                    up  
+Management0/0              unassigned      YES unset  administratively down up  
+firewall(config)# interface Management0/0
+firewall(config-if)# management-only
+firewall(config-if)# ip address 192.168.1.254 255.255.255.0
+firewall(config-if)# nameif management
+INFO: Security level for "management" set to 0 by default.
+firewall(config-if)# security-level 100
+firewall(config-if)# no shutdown
+firewall(config-if)# exit
+firewall(config)# show interface ip brief
+Interface                  IP-Address      OK? Method Status                Protocol
+GigabitEthernet0/0         unassigned      YES unset  administratively down down
+GigabitEthernet0/1         unassigned      YES unset  administratively down down
+GigabitEthernet0/2         unassigned      YES unset  administratively down down
+GigabitEthernet0/3         unassigned      YES unset  administratively down down
+GigabitEthernet0/4         unassigned      YES unset  administratively down down
+GigabitEthernet0/5         unassigned      YES unset  administratively down down
+GigabitEthernet0/6         unassigned      YES unset  administratively down down
+Internal-Data0/0           169.254.1.1     YES unset  up                    up  
+Management0/0              192.168.1.254   YES manual up                    up
+firewall(config)# crypto key generate rsa general-keys label sshkey modulus 2048
+INFO: The name for the keys will be: sshkey
+Keypair generation process begin. Please wait...
+firewall(config)# show crypto key mypubkey rsa 
+Key pair was generated at: 08:49:46 UTC Dec 28 2024
+ Key name: <Default-RSA-Key>
+ Usage: General Purpose Key
+ Modulus Size (bits): 2048
+ Storage: config
+ Key Data:
+
+  30820122 300d0609 2a864886 f70d0101 01050003 82010f00 3082010a 02820101 
+  009547d5 cfa67ca6 5f77cd4d d8579ef6 0a8ce4f3 ff2a0932 1cd5aabb dd582af8 
+  bd304149 8e747aab d803868b 13704845 0bc2bc88 51eca78e 05ba5b41 7e9e2cab 
+  13aaf7ef 9b02deeb fcd413ea be4516dc 16d65a24 2a931403 eba4b5c0 8f7e0f7f 
+  116654bd 4f98b0fb e13c6e89 6925dfd6 e7890df7 5b91a9f9 942e61c1 392c5912 
+  5a003f31 45c14a37 60b25874 9ca16cc5 c436c937 b62e544b 3f9c05d8 ed2f195d 
+  e13c90d7 3d8afa8b 8492e932 b0c4c2a1 d3ab558a 57fe7a5d 56f80df4 44a182f2 
+  6ef1f566 f998a09e 7d9a5442 51ec4ca3 2282a328 d238600c a0c4239c afae23a6 
+  474f52df acf9aa37 3df251bd 980d5df1 2441bafb 21e449fe 653fb0a6 20c1b131 
+  31020301 0001
+Key pair was generated at: 09:04:10 UTC Dec 28 2024
+ Key name: sshkey
+ Usage: General Purpose Key
+ Modulus Size (bits): 2048
+ Storage: config
+ Key Data:
+
+  30820122 300d0609 2a864886 f70d0101 01050003 82010f00 3082010a 02820101 
+  00dca483 ad912d3b e166430a 5423a213 d12328cd 4a9b8d1a 89ad963f d76a0dc3 
+  ea766a7e d4293dcb b4bed58b 127bc922 c5450e0d 146209f9 2a5b1d38 15d85b4e 
+  7d411cd9 b0ac1190 d3ce5c6d 0fd81774 4a8b9c76 50337c24 87373aa9 d468e563 
+  1e1baa22 a50a2fb5 33f66a1e 7a9de4b7 86188e04 54ecc01f 6003f9db 058d055a 
+  63a134db af3d0415 30baaf99 d9fa84f8 7e9be736 137041c5 a23d5f88 3c17e61a 
+  fd7b7375 5dce2b48 c4e49fdc dc934d8d d07a00b4 58785fe5 0491bc7d eb0c0c25 
+  415c4c78 592cdea9 d5191cca 13282cee 7fc76a1e 285a2170 7b0c9d4a f0320bb4 
+  771edbc0 a87d4325 a858dfee 21ecb10a 73ac1b45 3cf34cf3 4a751ac3 08620f0d 
+  13020301 0001
+firewall(config)# username admin password p@$$w0rd privilege 15
+firewall(config)# ssh version 2
+firewall(config)# ssh timeout 60
+firewall(config)# ssh 192.168.1.0 255.255.255.0 management
+firewall(config)# aaa authentication ssh console LOCAL 
+firewall(config)# http server enable
+firewall(config)# http 192.168.1.0 255.255.255.0 management
+firewall(config)# aaa authentication http console LOCAL
+firewall(config)# interface GigabitEthernet0/0
+firewall(config-if)# no ip address
+firewall(config-if)# no nameif
+firewall(config-if)# no security-level
+firewall(config-if)# no shutdown
+firewall(config-if)# exit
+firewall(config)# interface GigabitEthernet0/0.10
+firewall(config-subif)# vlan 10
+firewall(config-subif)# ip address 192.168.10.254 255.255.255.0
+firewall(config-subif)# nameif inside_vlan_10
+INFO: Security level for "inside_vlan_10" set to 0 by default.
+firewall(config-subif)# security-level 100
+firewall(config-subif)# exit
+firewall(config)# interface GigabitEthernet0/0.20        
+firewall(config-subif)# vlan 20
+firewall(config-subif)# ip address 192.168.20.254 255.255.255.0
+firewall(config-subif)# nameif inside_vlan_20
+INFO: Security level for "inside_vlan_20" set to 0 by default.
+firewall(config-subif)# security-level 100
+firewall(config-subif)# exit
+firewall(config)# dhcpd address 192.168.10.1-192.168.10.200 inside_vlan_10
+firewall(config)# dhcpd domain adminlabs.local interface inside_vlan_10
+firewall(config)# dhcpd dns 1.1.1.1 interface inside_vlan_10
+firewall(config)# dhcpd enable inside_vlan_10
+firewall(config)# dhcpd address 192.168.20.1-192.168.20.200 inside_vlan_20
+firewall(config)# dhcpd domain adminlabs.local interface inside_vlan_20
+firewall(config)# dhcpd dns 1.1.1.1 interface inside_vlan_20
+firewall(config)# dhcpd enable inside_vlan_20
+firewall(config)# interface GigabitEthernet 0/6
+firewall(config-if)# ip address 50.0.0.5 255.255.255.0
+firewall(config-if)# nameif outside
+INFO: Security level for "outside" set to 0 by default.
+firewall(config-if)# no shutdown
+firewall(config-if)# exit
+firewall(config)# route outside 0 0 50.0.0.6
