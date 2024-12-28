@@ -121,8 +121,13 @@ INFO: Security level for "outside" set to 0 by default.
 firewall(config-if)# no shutdown
 firewall(config-if)# exit
 firewall(config)# route outside 0 0 50.0.0.6
+</pre>
+<p text-align="justify">
+NAT dynamic PAT Configuration using outside interface
+</p>
+<pre>
 firewall(config)# object network inside_vlan_10_obj_net                        
-firewall(config-network-object)# host 50.0.0.5
+firewall(config-network-object)# subnet 192.168.10.0 255.255.255.0
 firewall(config-network-object)# exit
 firewall(config)# nat (inside_vlan_10,outside) source dynamic inside_vlan_10_obj_net interface
 firewall(config)# policy-map global_policy             
