@@ -123,7 +123,7 @@ firewall(config-if)# exit
 firewall(config)# route outside 0 0 50.0.0.6
 </pre>
 <p style="text-align:justify">
-NAT dynamic PAT Configuration using outside interface
+NAT dynamic PAT configuration using outside interface
 </p>
 <pre>
 firewall(config)# object network inside_vlan_10_obj_net                        
@@ -136,3 +136,8 @@ firewall(config-pmap-c)# inspect icmp
 firewall(config-pmap-c)# exit
 firewall(config-pmap)# exit
 </pre>
+firewall(config)# object network outside_obj_net                        
+firewall(config-network-object)# host 50.0.0.4
+firewall(config-network-object)# exit
+firewall(config-pmap)# nat (inside_vlan_10,outside) source dynamic inside_vlan_10_obj_net outside_obj_net
+
