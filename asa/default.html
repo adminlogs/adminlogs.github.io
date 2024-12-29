@@ -121,7 +121,8 @@ INFO: Security level for "outside" set to 0 by default.
 firewall(config-if)# no shutdown
 firewall(config-if)# exit
 firewall(config)# route outside 0 0 50.0.0.6
-</pre>
+</pre>nat (inside_vlan_10,outside) source dynamic inside_vlan_10_obj_net pat-pool outside_obj_net round-robin
+
 <p style="text-align:justify">
 NAT dynamic PAT configuration using outside interface
 </p>
@@ -144,4 +145,5 @@ firewall(config)# object network outside_obj_net
 firewall(config-network-object)# host 50.0.0.4
 firewall(config-network-object)# exit
 firewall(config-pmap)# nat (inside_vlan_10,outside) source dynamic inside_vlan_10_obj_net outside_obj_net
+firewall(config-pmap)# nat (inside_vlan_10,outside) source dynamic inside_vlan_10_obj_net pat-pool outside_obj_net round-robin
 </pre>
