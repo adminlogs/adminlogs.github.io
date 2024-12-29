@@ -146,7 +146,7 @@ firewall(config-network-object)# exit
 firewall(config-pmap)# nat (inside_vlan_10,outside) source dynamic inside_vlan_10_obj_net outside_obj_net
 </pre>
 <p style="text-align:justify">
-NAT dynamic PAT configuration using a range of IP addresses (50.0.0.8-50.0.0.9) in the same range of the outside interface (50.0.0.5), the address cannot be used directly and an object network has to be created.
+NAT dynamic PAT configuration using a range of IP addresses (50.0.0.8-50.0.0.9) in the same range of the outside interface (50.0.0.5). By default all ports for a PAT address will be allocated before the next PAT address is used.  The round-robin method assigns an address/port from each PAT address in the pool before returning to use the first address again, and then the second address, and so on. 
 </p>
 <pre>
 firewall(config)# object network outside_obj_net                        
