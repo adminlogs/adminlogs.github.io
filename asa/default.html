@@ -137,12 +137,21 @@ firewall(config-network-object)# exit
 firewall(config)# nat (inside_vlan_10,outside) source dynamic inside_vlan_10_obj_net interface
 </pre>
 <p style="text-align:justify">
-NAT dynamic PAT configuration using an IP address, in this case 50.0.0.4 in the same range of the outside interface
+NAT dynamic PAT configuration using an IP address (50.0.0.4) in the same range of the outside interface (50.0.0.5), the address cannot be used directly and an object network has to be created.
 </p>
 <pre>
 firewall(config)# object network outside_obj_net                        
 firewall(config-network-object)# host 50.0.0.4
 firewall(config-network-object)# exit
 firewall(config-pmap)# nat (inside_vlan_10,outside) source dynamic inside_vlan_10_obj_net outside_obj_net
+</pre>
+<p style="text-align:justify">
+NAT dynamic PAT configuration using a range of IP addresses (50.0.0.8-50.0.0.9) in the same range of the outside interface (50.0.0.5), the address cannot be used directly and an object network has to be created.
+</p>
+<pre>
+firewall(config)# object network outside_obj_net                        
+firewall(config-network-object)# range 50.0.0.8 50.0.0.9
+firewall(config-network-object)# exit
+firewall(config-pmap)# nat (inside_vlan_10,outside) source dynamic inside_vlan_10_obj_net pat-pool outside_obj_net
 firewall(config-pmap)# nat (inside_vlan_10,outside) source dynamic inside_vlan_10_obj_net pat-pool outside_obj_net round-robin
 </pre>
