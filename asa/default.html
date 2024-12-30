@@ -155,7 +155,7 @@ firewall(config-network-object)# exit
 firewall(config-pmap)# nat (inside_vlan_10,outside) source dynamic inside_vlan_10_obj_net pat-pool outside_obj_net
 firewall(config-pmap)# nat (inside_vlan_10,outside) source dynamic inside_vlan_10_obj_net pat-pool outside_obj_net round-robin
 </pre>
-<p>Publish aserver</p>
+<p>Publish a server</p>
 <pre>
 firewall(config)# object network webserver_inside
 firewall(config-network-object)# nat (server,outside) static webserver_outside
