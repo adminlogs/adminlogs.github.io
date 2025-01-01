@@ -13,5 +13,46 @@ VPN Technologies:
     - DMVPN:              tunnel-less         cisco routers only
     - GRE-Based VPN:      tunnel-less         cisco routers only
     - Easy VPN:           tunnel-based        cisco asa 5500 series, cisco vpn 3000 series, and cisco pix firewalls
-    - Standard IPsec VPN: tunnel-based        multivendors
+    - Standard IPsec VPN: tunnel-based        multivendorsPacket
+CIA: Confidentiality Integrity Authentication
+IPSec:
+  AH:
+  IP/51
+  RFC 3402 Authentication Header          digitaly sign an IP packet / Authentication
+    Authenticate the entire IP packet
+      transport mode:
+        IP|AH header|TCP|Data
+      tunnel mode:
+        new IP header|AH header|IP|TCP|Data
+  ESP:
+  IP/50
+  RFC 3403 Encapsulation Security Packet  encrypt an IP Packet       / Authentication & Confidentiality
+    Authenticate only the IP datagram portion of the IP packet
+    transport mode:
+        IP|ESP header|TCP|Data|ESP trailer|ESP auth
+      tunnel mode:
+        new IP header|ESP header|IP|TCP|Data|ESP trailer|ESP auth
+  ISAKMP:
+     UDP/500
+    Internet Security Association and Key Management Protocol IKE RFC 7296 , now also specified as part of the IKE protocol suite
+    ISAKMP defines how security associations (SAs) are set up and used to define direct connections between two hosts that are using IPsec
+  IKE Phase 1: is the IKE negociation
+  IKE Phase 2: is the IPSec  SA exchange
+  IKEv1
+  IKEv2
+  IKE data flow:
+    Phase 1:
+      IKE policy negociation
+      DH
+      authenticatio
+    Phase 2:
+      IPSec SA exchange
+    Data flow:
+      Data flow
 </pre>
+GETVPN: Group Encrypted Transport VPN
+  In a GETVPN setup, there isn’t a need to negotiate point-to-point IPsec tunnels between members of a group; this means GETVPN is a tunnel-less option.
+DMVPN: Dynamic Multipoint VPN (DMVPN)
+  mGRE Multipoint GRE
+FlexVPN:
+  Cisco version of the IKEv2 standard offering for both site-to-site and remote access VPNs.
