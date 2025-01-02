@@ -57,12 +57,16 @@ DMVPN: Dynamic Multipoint VPN (DMVPN)
 FlexVPN:
   Cisco version of the IKEv2 standard offering for both site-to-site and remote access VPNs.
 <h3>GETVPN Group Encrypted Transport VPN:</h3>
+<p>
   Resolve the problem of the large number of security associations (SAs), GETVPN uses a single SA for all the group members. Using a single SA eliminates the hub-and-spoke solutions and partial mesh configurations. GETVPN protocol GDOI Group Domain Of Interpretation establishes the SA between the group members.
   GETVPN introduces the concept of <b>trusted group</b>, each VPN router in the trusted group trusts the other routers nad can send traffic to them. All the group members share the a common SA, this results in two distinct important advantages for GETVPN:
     Any group member can decrypt traffic encrypted by any other member.
     Tunnel negociation is not required because GETVPN is a non-tunnel/tunnel-less based solution.
+</p>
   <h4>GDOI(Group Domain Of Interest) Protocol:</h4>
+<p>
    RFC 6407, in GETVPN the router encrypts the payload and transmits the IP datagram with the original source and destination IP addresses.
+</p>
    Original IP Packet:
    <pre>
    ------------+-------------
@@ -70,15 +74,11 @@ FlexVPN:
    | IP Header | IP Payload |
    |           |            |
    ------------+-------------
-   </pre>
    IPSec Site-to-Site Packet
-   <pre>
-   |              |            |                    |            |
+   |               |            |                    |            |
    | New IP Header | ESP Header | Original IP Header | IP Payload |
-   |              |            |                    |            |
-   </pre>
+   |               |            |                    |            |
    GETVPN IP Packet
-   <pre>
    |                    |            |                    |            |
    | Original IP Header | ESP Header | Original IP Header | IP Payload |
    |                    |            |                    |            |
