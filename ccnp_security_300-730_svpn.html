@@ -74,7 +74,7 @@ FlexVPN:
    IPSec Site-to-Site Packet
    <pre>
    |              |            |                    |            |
-   |New IP Header | ESP Header | Original IP Header | IP Payload |
+   | New IP Header | ESP Header | Original IP Header | IP Payload |
    |              |            |                    |            |
    </pre>
    GETVPN IP Packet
@@ -82,4 +82,8 @@ FlexVPN:
    |                    |            |                    |            |
    | Original IP Header | ESP Header | Original IP Header | IP Payload |
    |                    |            |                    |            |
-   </pre>  
+   </pre>
+  <p>
+  GETVPN does not work in NAT environment, tis type of solution is rarely used across the public network such the internet. GETVPN is ideally suited for either MPLS network or a private IP netwok implementation in large entreprises and government entities.
+  GETVPN supports IKEv1 and IKEv2.
+  </p>
