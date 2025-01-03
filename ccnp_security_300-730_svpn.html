@@ -96,10 +96,14 @@ FlexVPN:
      <li>IPSec policies</li>
      <li>Traffic classification</li>
      </ul>
+<p>
 Key Server is responsible for registering the group emebers, sending out encryption keys and rekeying process that  occurs periodicaly.
 It cannot be a group member, GETVPN needs at least one Key Server. Key Server uses the protocol GDOI to communicate with the group members.
+<p>
+</p>
 Upon initialization, a group member registers with the Key Server by using a preshared key or certification PKI. Once a group member is authorized it retrieves the policy configuration and the two keys used for communication with other group members. The Key Server is responsible for maintaining the SA policy, authenticate group members ans provifding session keys for encrypting/decryptig traffic.
-Key Server provifrs two keys for group members:
+Key Server provides two keys for group members:
+</p>
 <ul>
 <li>key encryption key (KEK) protects control plane communication such as rekeying process</li>
 <li>traffic encryption key (TEK) responsible for payload encryption between group members, it  supports the IPSec SA that all group members use to encrypt/decryp payloads</li>
