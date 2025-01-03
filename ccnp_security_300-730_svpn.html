@@ -88,14 +88,14 @@ FlexVPN:
     Key Server.
     Group member.
     GDOI protocol.
-  <h4>Key Server</h4>
-    Is the most critical device in the GETPVN solution. The minimal components that should be configured on a key server:
-     <ul>
-     <li>IKE policy</li>
-     <li>RSA key for rekeying</li>
-     <li>IPSec policies</li>
-     <li>Traffic classification</li>
-     </ul>
+<h4>Key Server</h4>
+Is the most critical device in the GETPVN solution. The minimal components that should be configured on a key server:
+<ul>
+<li>IKE policy</li>
+<li>RSA key for rekeying</li>
+<li>IPSec policies</li>
+<li>Traffic classification</li>
+</ul>
 <p>
 Key Server is responsible for registering the group emebers, sending out encryption keys and rekeying process that  occurs periodicaly.
 It cannot be a group member, GETVPN needs at least one Key Server. Key Server uses the protocol GDOI to communicate with the group members.
@@ -114,4 +114,15 @@ Key Server provides two keys for group members:
   Policy and SA information are retrieved from the Key Server, during the registration the group member provides ID to get the Policy and the keys.
 </p>
 <p>A group member is a VPN router that is member of GDOI group and can encrypt traffic being sent to any memeber other member since the all use the same IPSec SA.</p>
-<p>A fault tolerance is  having a single Key Server, it is possible to have upto 8 Key Servers per group. A group member register to one Server Key, and then the Key Server replicates that information to the primary Key Server.</p>
+<p>A fault tolerance is  having a single Key Server, it is possible to have upto 8 Key Servers per group. A group member register to one Server Key, and then the Key Server replicates that information to the primary Key Server The primary Key Server is responsible for maintaining the database of all registered group members and the rekeying synchronization process.</p>
+<h4>GETVPN GDOI Protocol</h4>
+<p>
+Is used as communication mechanusm between the key servers and group members in the VPN. It is protected by IKE phase 1. KEK is useed when the key server pushes a new key to the group members. The key server can use multicast to push the keys or notify them ot the rekeying.
+</p>
+<h4>GETVPN Security Controls</h4>
+<h5>Rekeying</h5>
+<p>configured on the key server, is a policy that is pushed out to the group members using KEK before the existing key expires.</p>p
+<h5>TBAR (Time Based Anti-Replay)</h5>
+<p> It is a pseudo time clock established for the group and managed by the key server.</p>
+<h5>P-D3P (IP-Delivery Delay Detection Protocol)</h5>
+<p> Is designed to address IP delivery delay attacks</p>
