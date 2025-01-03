@@ -100,7 +100,14 @@ Key Server is responsible for registering the group emebers, sending out encrypt
 It cannot be a group member, GETVPN needs at least one Key Server. Key Server uses the protocol GDOI to communicate with the group members.
 Upon initialization, a group member registers with the Key Server by using a preshared key or certification PKI. Once a group member is authorized it retrieves the policy configuration and the two keys used for communication with other group members. The Key Server is responsible for maintaining the SA policy, authenticate group members ans provifding session keys for encrypting/decryptig traffic.
 Key Server provifrs two keys for group members:
-key encryption key (KEK) protects control plane communication such as rekeying process
-traffic encryption key (TEK) responsible for payload encryption between group members, it  supports the IPSec SA that all group members use to encrypt/decryp payloads.
-
-  </p>
+<ul>
+<li>key encryption key (KEK) protects control plane communication such as rekeying process</li>
+<li>traffic encryption key (TEK) responsible for payload encryption between group members, it  supports the IPSec SA that all group members use to encrypt/decryp payloads</li>
+</ul>
+</p>
+  <h4>Group Member</h4>
+<p>
+  Policy and SA information are retrieved from the Key Server, during the registration the group member provides ID to get the Policy and the keys.
+</p>
+<p>A group member is a VPN router that is member of GDOI group and can encrypt traffic being sent to any memeber other member since the all use the same IPSec SA.</p>
+<p>A fault tolerance is  having a single Key Server, it is possible to have upto 8 Key Servers per group. A group member register to one Server Key, and then the Key Server replicates that information to the primary Key Server.</p>
