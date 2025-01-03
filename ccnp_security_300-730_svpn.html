@@ -69,13 +69,13 @@ FlexVPN:
 </p>
    Original IP Packet:
    <pre>
-   |           |            |
-   | IP Header | IP Payload |
-   |           |            |
+                                              |           |            |
+                                              | IP Header | IP Payload |
+                                              |           |            |
    IPSec Site-to-Site Packet
-   |               |            |                    |            |
-   | New IP Header | ESP Header | Original IP Header | IP Payload |
-   |               |            |                    |            |
+        |               |            |                    |            |
+        | New IP Header | ESP Header | Original IP Header | IP Payload |
+        |               |            |                    |            |
    GETVPN IP Packet
    |                    |            |                    |            |
    | Original IP Header | ESP Header | Original IP Header | IP Payload |
