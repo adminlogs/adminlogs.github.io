@@ -127,3 +127,535 @@ Is used as communication mechanusm between the key servers and group members in 
 <h5>P-D3P (IP-Delivery Delay Detection Protocol)</h5>
 <p> Is designed to address IP delivery delay attacks</p>
 <p>IP-D3P is an interoperability feature, which means that the Cisco IOS software and GDOI versions must be the same.</p>
+<pre>
+Router>enable
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#hostname KS1
+KS1(config)#do write memory
+Building configuration...
+[OK]
+KS1(config)#crypto isakm
+KS1(config)#crypto isakmp ?
+  aggressive-mode           Disable ISAKMP aggressive mode 
+  client                    Set client configuration policy
+  default                   ISAKMP default policy
+  disconnect-revoked-peers  Disconnect Crypto Session with Revoked Peer
+  enable                    Enable ISAKMP
+  fragmentation             IKE Fragmentation enabled if required
+  identity                  Set the identity which ISAKMP will use
+  invalid-spi-recovery      Initiate IKE and send Invalid SPI Notify
+  keepalive                 Set a keepalive interval for use with IOS peers
+  key                       Set pre-shared key for remote peer
+  nat                       Set a nat  keepalive interval for use with IOS
+                            peers
+  peer                      Set Peer Policy
+  policy                    Set policy for an ISAKMP protection suite
+  profile                   Define ISAKMP Profiles
+  xauth                     Set Extended Authentication values
+
+KS1(config)#crypto isakmp policy 1
+KS1(config-isakmp)#encry
+KS1(config-isakmp)#encryption aes 128
+KS1(config-isakmp)#hash sha256
+KS1(config-isakmp)#group 14
+KS1(config-isakmp)#lifetime 3600
+KS1(config-isakmp)#authentication ?
+  pre-share  Pre-Shared Key
+  rsa-encr   Rivest-Shamir-Adleman Encryption
+  rsa-sig    Rivest-Shamir-Adleman Signature
+
+KS1(config-isakmp)#authentication pre-share
+KS1(config-isakmp)#?
+ISAKMP commands:
+  authentication  Set authentication method for protection suite
+  default         Set a command to its defaults
+  encryption      Set encryption algorithm for protection suite
+  exit            Exit from ISAKMP protection suite configuration mode
+  group           Set the Diffie-Hellman group
+  hash            Set hash algorithm for protection suite
+  lifetime        Set lifetime for ISAKMP security association
+  no              Negate a command or set its defaults
+
+KS1(config-isakmp)#exit
+KS1(config)#crypto isakmp ?         
+  aggressive-mode           Disable ISAKMP aggressive mode 
+  client                    Set client configuration policy
+  default                   ISAKMP default policy
+  disconnect-revoked-peers  Disconnect Crypto Session with Revoked Peer
+  enable                    Enable ISAKMP
+  fragmentation             IKE Fragmentation enabled if required
+  identity                  Set the identity which ISAKMP will use
+  invalid-spi-recovery      Initiate IKE and send Invalid SPI Notify
+  keepalive                 Set a keepalive interval for use with IOS peers
+  key                       Set pre-shared key for remote peer
+  nat                       Set a nat  keepalive interval for use with IOS
+                            peers
+  peer                      Set Peer Policy
+  policy                    Set policy for an ISAKMP protection suite
+  profile                   Define ISAKMP Profiles
+  xauth                     Set Extended Authentication values
+
+KS1(config)#crypto isakmp key ?
+  0     Specifies an UNENCRYPTED password will follow
+  6     Specifies an ENCRYPTED password will follow
+  WORD  The UNENCRYPTED (cleartext) user password
+
+KS1(config)#crypto isakmp key 0 ?
+  WORD  The UNENCRYPTED (cleartext) user password
+
+KS1(config)#crypto isakmp key 0 KSGETVPNKEY ?
+  address   define shared key with IP address
+  hostname  define shared key with hostname
+
+KS1(config)#crypto isakmp key 0 KSGETVPNKEY address 172.16.10.2
+KS1(config)#crypto isakmp key 0 KSGETVPNKEY address 172.16.20.2
+KS1(config)#crypto isakmp key 0 KSGETVPNKEY address 172.16.30.2
+KS1(config)#crypto isakmp ?
+  aggressive-mode           Disable ISAKMP aggressive mode 
+  client                    Set client configuration policy
+  default                   ISAKMP default policy
+  disconnect-revoked-peers  Disconnect Crypto Session with Revoked Peer
+  enable                    Enable ISAKMP
+  fragmentation             IKE Fragmentation enabled if required
+  identity                  Set the identity which ISAKMP will use
+  invalid-spi-recovery      Initiate IKE and send Invalid SPI Notify
+  keepalive                 Set a keepalive interval for use with IOS peers
+  key                       Set pre-shared key for remote peer
+  nat                       Set a nat  keepalive interval for use with IOS
+                            peers
+  peer                      Set Peer Policy
+  policy                    Set policy for an ISAKMP protection suite
+  profile                   Define ISAKMP Profiles
+  xauth                     Set Extended Authentication values
+
+KS1(config)#crypto isakmp crypto ipsec ?
+% Unrecognized command
+KS1(config)#crypto isakmp ?            
+  aggressive-mode           Disable ISAKMP aggressive mode 
+  client                    Set client configuration policy
+  default                   ISAKMP default policy
+  disconnect-revoked-peers  Disconnect Crypto Session with Revoked Peer
+  enable                    Enable ISAKMP
+  fragmentation             IKE Fragmentation enabled if required
+  identity                  Set the identity which ISAKMP will use
+  invalid-spi-recovery      Initiate IKE and send Invalid SPI Notify
+  keepalive                 Set a keepalive interval for use with IOS peers
+  key                       Set pre-shared key for remote peer
+  nat                       Set a nat  keepalive interval for use with IOS
+                            peers
+  peer                      Set Peer Policy
+  policy                    Set policy for an ISAKMP protection suite
+  profile                   Define ISAKMP Profiles
+  xauth                     Set Extended Authentication values
+
+KS1(config)#crypto ipsec ?
+  df-bit                Handling of encapsulated DF bit.
+  fragmentation         Handling of fragmentation of near-MTU sized packets
+  ipv4-deny             Configure global ipv4 deny policy.
+  nat-transparency      IPsec NAT transparency model
+  optional              Enable optional encryption for IPSec
+  profile               Configure an ipsec policy profile
+  security-association  Security association parameters
+  transform-set         Define transform and settings
+
+KS1(config)#crypto ipsec trans
+KS1(config)#crypto ipsec transform-set ?
+  WORD  Transform set tag
+
+KS1(config)#crypto ipsec transform-set group_5_transform ?
+  ah-md5-hmac      AH-HMAC-MD5 transform
+  ah-sha-hmac      AH-HMAC-SHA transform
+  ah-sha256-hmac   AH-HMAC-SHA256 transform
+  ah-sha384-hmac   AH-HMAC-SHA384 transform
+  ah-sha512-hmac   AH-HMAC-SHA512 transform
+  comp-lzs         IP Compression using the LZS compression algorithm
+  esp-3des         ESP transform using 3DES(EDE) cipher (168 bits)
+  esp-aes          ESP transform using AES cipher
+  esp-des          ESP transform using DES cipher (56 bits)
+  esp-gcm          ESP transform using GCM cipher
+  esp-gmac         ESP transform using GMAC cipher
+  esp-md5-hmac     ESP transform using HMAC-MD5 auth
+  esp-null         ESP transform w/o cipher
+  esp-seal         ESP transform using SEAL cipher (160 bits)
+  esp-sha-hmac     ESP transform using HMAC-SHA auth
+  esp-sha256-hmac  ESP transform using HMAC-SHA256 auth
+  esp-sha384-hmac  ESP transform using HMAC-SHA384 auth
+  esp-sha512-hmac  ESP transform using HMAC-SHA512 auth
+
+KS1(config)#crypto ipsec transform-set group_5_transform_set esp-aes esp-sha-h$
+KS1(cfg-crypto-trans)#?
+Crypto transform configuration commands:
+  default  Set a command to its defaults
+  exit     Exit from crypto transform configuration mode
+  mode     encapsulation mode (transport/tunnel)
+  no       Negate a command or set its defaults
+
+KS1(cfg-crypto-trans)#mode ?
+  transport  transport (payload encapsulation) mode
+  tunnel     tunnel (datagram encapsulation) mode
+
+KS1(cfg-crypto-trans)#mode tunn
+KS1(cfg-crypto-trans)#mode tunnel ?
+  <cr>
+
+KS1(cfg-crypto-trans)#mode tunnel 
+KS1(cfg-crypto-trans)#?
+Crypto transform configuration commands:
+  default  Set a command to its defaults
+  exit     Exit from crypto transform configuration mode
+  mode     encapsulation mode (transport/tunnel)
+  no       Negate a command or set its defaults
+
+KS1(cfg-crypto-trans)#exit
+KS1(config)#crypt
+KS1(config)#crypto ipse
+KS1(config)#crypto ipsec ?
+  df-bit                Handling of encapsulated DF bit.
+  fragmentation         Handling of fragmentation of near-MTU sized packets
+  ipv4-deny             Configure global ipv4 deny policy.
+  nat-transparency      IPsec NAT transparency model
+  optional              Enable optional encryption for IPSec
+  profile               Configure an ipsec policy profile
+  security-association  Security association parameters
+  transform-set         Define transform and settings
+
+KS1(config)#crypto ipsec profile ?
+  WORD  Profile name
+
+KS1(config)#crypto ipsec profile profile_1
+KS1(ipsec-profile)#?
+Crypto Map configuration commands:
+  default         Set a command to its defaults
+  description     Description of the crypto map statement policy
+  dialer          Dialer related commands
+  exit            Exit from crypto map configuration mode
+  no              Negate a command or set its defaults
+  redundancy      Configure HA for this ipsec profile
+  responder-only  Do not initiate SAs from this device
+  set             Set values for encryption/decryption
+
+KS1(ipsec-profile)#set ?
+  group                 Set the san group parameters
+  identity              Identity restriction.
+  ikev2-profile         Specify ikev2 Profile
+  isakmp-profile        Specify isakmp Profile
+  mixed-mode            Turn on IPSec mixed-mode
+  pfs                   Specify pfs settings
+  reverse-route         Reverse Route Injection.
+  security-association  Security association parameters
+  security-policy       Maximum number of Security Policy entries that can be
+                        negotiated with the peer
+  transform-set         Specify list of transform sets in priority order
+
+KS1(ipsec-profile)#set trans
+KS1(ipsec-profile)#set transform-set group_5_transform_set
+KS1(ipsec-profile)#set ?
+  group                 Set the san group parameters
+  identity              Identity restriction.
+  ikev2-profile         Specify ikev2 Profile
+  isakmp-profile        Specify isakmp Profile
+  mixed-mode            Turn on IPSec mixed-mode
+  pfs                   Specify pfs settings
+  reverse-route         Reverse Route Injection.
+  security-association  Security association parameters
+  security-policy       Maximum number of Security Policy entries that can be
+                        negotiated with the peer
+  transform-set         Specify list of transform sets in priority order
+
+KS1(ipsec-profile)#set secu  
+KS1(ipsec-profile)#set security-ass
+KS1(ipsec-profile)#set security-association ?
+  dfbit      Handling of encapsulated DF bit.
+  dummy      Enable transmitting dummy packets
+  ecn        Handling of ECN bit
+  idle-time  Automatically delete IPSec SAs after a given idle period.
+  level      specify a security association granularity level for identities
+  lifetime   security association lifetime
+  replay     Set replay checking.
+
+KS1(ipsec-profile)#set security-association lifet
+KS1(ipsec-profile)#set security-association lifetime ?
+  days       Time-based key duration in days
+  kilobytes  Volume-based key duration
+  seconds    Time-based key duration in seconds
+
+KS1(ipsec-profile)#set security-association lifetime sec
+KS1(ipsec-profile)#set security-association lifetime seconds 7200
+KS1(ipsec-profile)#?  
+Crypto Map configuration commands:
+  default         Set a command to its defaults
+  description     Description of the crypto map statement policy
+  dialer          Dialer related commands
+  exit            Exit from crypto map configuration mode
+  no              Negate a command or set its defaults
+  redundancy      Configure HA for this ipsec profile
+  responder-only  Do not initiate SAs from this device
+  set             Set values for encryption/decryption
+
+KS1(ipsec-profile)#set ?
+  group                 Set the san group parameters
+  identity              Identity restriction.
+  ikev2-profile         Specify ikev2 Profile
+  isakmp-profile        Specify isakmp Profile
+  mixed-mode            Turn on IPSec mixed-mode
+  pfs                   Specify pfs settings
+  reverse-route         Reverse Route Injection.
+  security-association  Security association parameters
+  security-policy       Maximum number of Security Policy entries that can be
+                        negotiated with the peer
+  transform-set         Specify list of transform sets in priority order
+
+KS1(ipsec-profile)#exit
+KS1(config)#crypto key generate ?
+  ec   Generate EC keys for ECDSA
+  rsa  Generate RSA keys
+
+KS1(config)#crypto key generate rsa ?
+  encryption    Generate a general purpose RSA key pair for signing and
+                encryption
+  exportable    Allow the key to be exported
+  general-keys  Generate a general purpose RSA key pair for signing and
+                encryption
+  label         Provide a label
+  modulus       Provide number of modulus bits on the command line
+  on            create key on specified device.
+  redundancy    Allow the key to be synced to high-availability peer
+  signature     Generate a general purpose RSA key pair for signing and
+                encryption
+  storage       Store key on specified device
+  usage-keys    Generate separate RSA key pairs for signing and encryption
+  <cr>
+
+KS1(config)#crypto key generate rsa gener
+KS1(config)#crypto key generate rsa general-keys ?
+  exportable  Allow the key to be exported
+  label       Provide a label
+  modulus     Provide number of modulus bits on the command line
+  on          create key on specified device.
+  redundancy  Allow the key to be synced to high-availability peer
+  storage     Store key on specified device
+  <cr>
+
+KS1(config)#crypto key generate rsa general-keys label GETKEYS mo
+KS1(config)#$generate rsa general-keys label GETKEYS modulus 2048 export     
+The name for the keys will be: GETKEYS
+
+% The key modulus size is 2048 bits
+% Generating 2048 bit RSA keys, keys will be exportable...
+[OK] (elapsed time was 0 seconds)
+
+KS1(config)#
+*Jan  3 06:48:57.848: %SSH-5-ENABLED: SSH 1.99 has been enabled
+KS1(config)#crypto ?
+  call         Configure Crypto Call Admission Control
+  dynamic-map  Specify a dynamic crypto map template
+  engine       Enter a crypto engine configurable menu
+  gdoi         Configure GKM (Group Key Management, GDOI or G-IKEv2) Policy
+  gkm          Configure GKM (Group Key Management, GDOI or G-IKEv2) Policy
+  identity     Enter a crypto identity list
+  ikev2        Configure IKEv2 Options
+  ipsec        Configure IPSEC policy
+  isakmp       Configure ISAKMP policy
+  key          Long term key operations
+  keyring      Key ring commands
+  logging      logging messages
+  map          Enter a crypto map
+  mib          Configure Crypto-related MIB Parameters
+  pki          Public Key components
+  ssl          Configure Crypto SSL Options
+  vpn          Configure crypto vpn commands
+  xauth        X-Auth parameters
+
+KS1(config)#crypto gdoi ?
+  group  Configure a GKM (Group Key Management, GDOI or G-IKEv2) Group
+
+KS1(config)#crypto gdoi group ?
+  WORD  Group Name
+  ipv6  IPv6 GKM (Group Key Management) Group
+
+KS1(config)#crypto gdoi group group_5
+KS1(config-gkm-group)#?
+GKM (Group Key Management) Group configuration commands:
+  client    Set the group client parameters
+  default   Set a command to its defaults
+  exit      Exit the group mode
+  identity  Set the identity of the group
+  no        Negate a command or set its defaults
+  passive   Set the group in passive mode
+  server    Set the group server for of the group
+
+KS1(config-gkm-group)#identity ?
+  address  Set the identity of the group as an address
+  number   Set the identity of the group as a number
+
+KS1(config-gkm-group)#identity number ?
+  <0-4294967295>  Set the group number
+
+KS1(config-gkm-group)#identity number 5
+KS1(config-gkm-group)#?
+GKM (Group Key Management) Group configuration commands:
+  client    Set the group client parameters
+  default   Set a command to its defaults
+  exit      Exit the group mode
+  identity  Set the identity of the group
+  no        Negate a command or set its defaults
+  passive   Set the group in passive mode
+  server    Set the group server for of the group
+
+KS1(config-gkm-group)#server ?
+  address   Identify the group server by address
+  hostname  Identify the group server by hostname
+  local     Configure GKM group server defined locally
+
+KS1(config-gkm-group)#server local
+KS1(gkm-local-server)#
+*Jan  3 06:50:36.189: %CRYPTO-6-GDOI_ON_OFF: GDOI is ON
+KS1(gkm-local-server)#exit
+KS1(config-gkm-group)#server local
+KS1(gkm-local-server)#?
+GKM (Group Key Management, GDOI or G-IKEv2) Local Server configuration
+commands:
+  address        Configure server source address
+  authorization  Configure authorization for the group
+  default        Set a command to its defaults
+  exit           Exit the group local server mode
+  gdoi           Enable GDOI (ISAKMP) Protocol for Registration & Rekey
+  gikev2         Enable G-IKEv2 (IKEv2) Protocol for Registration & Rekey
+  group          Configure parameters for the group (e.g. Suite-B)
+  identifier     Enter Suite-B KSSID (Key Server Sender ID) config mode
+  no             Negate a command or set its defaults
+  redundancy     Enter cooperative key server configuration mode
+  registration   Configure registration for the group
+  rekey          Configure rekey policy for the group
+  sa             Configure a security association
+
+KS1(gkm-local-server)#rekey
+KS1(gkm-local-server)#rekey ?
+  acknowledgement  Request group members to acknowledge rekeys
+  address          Define the rekey packet format
+  algorithm        Set the rekey encryption algorithm
+  authentication   Identify the rekey authentication keypair
+  lifetime         Define the rekey lifetime
+  retransmit       Define the rekey retransmission parameters
+  sig-hash         Set rekey signature-hash parameters
+  transport        Specify the rekey distribution method
+
+KS1(gkm-local-server)#?     
+GKM (Group Key Management, GDOI or G-IKEv2) Local Server configuration
+commands:
+  address        Configure server source address
+  authorization  Configure authorization for the group
+  default        Set a command to its defaults
+  exit           Exit the group local server mode
+  gdoi           Enable GDOI (ISAKMP) Protocol for Registration & Rekey
+  gikev2         Enable G-IKEv2 (IKEv2) Protocol for Registration & Rekey
+  group          Configure parameters for the group (e.g. Suite-B)
+  identifier     Enter Suite-B KSSID (Key Server Sender ID) config mode
+  no             Negate a command or set its defaults
+  redundancy     Enter cooperative key server configuration mode
+  registration   Configure registration for the group
+  rekey          Configure rekey policy for the group
+  sa             Configure a security association
+
+KS1(gkm-local-server)#rekey trans
+KS1(gkm-local-server)#rekey transport un
+KS1(gkm-local-server)#rekey transport unicast 
+KS1(gkm-local-server)#
+*Jan  3 06:51:43.128: %GDOI-5-KS_REKEY_TRANS_2_UNI: Group group_5 transitioned to Unicast Rekey.rekey lige              
+KS1(gkm-local-server)#rekey li  
+KS1(gkm-local-server)#rekey lifetime seco
+KS1(gkm-local-server)#rekey lifetime seconds 86400
+KS1(gkm-local-server)#rekey ret
+KS1(gkm-local-server)#rekey retransmit 10 number 2
+KS1(gkm-local-server)#rekey auth
+KS1(gkm-local-server)#rekey authentication ?
+  mypubkey  Identify a keypair associated with this device
+
+KS1(gkm-local-server)#rekey authentication mypu
+KS1(gkm-local-server)#rekey authentication mypubkey ?
+  rsa  Identify an RSA keypair
+
+KS1(gkm-local-server)#rekey authentication mypubkey rsa GETKEYS
+KS1(gkm-local-server)#addres ?
+  ipv4  Set ipv4 address of local server
+
+KS1(gkm-local-server)#addres ipv4 172.16.0.2
+KS1(gkm-local-server)#?
+GKM (Group Key Management, GDOI or G-IKEv2) Local Server configuration
+commands:
+  address        Configure server source address
+  authorization  Configure authorization for the group
+  default        Set a command to its defaults
+  exit           Exit the group local server mode
+  gdoi           Enable GDOI (ISAKMP) Protocol for Registration & Rekey
+  gikev2         Enable G-IKEv2 (IKEv2) Protocol for Registration & Rekey
+  group          Configure parameters for the group (e.g. Suite-B)
+  identifier     Enter Suite-B KSSID (Key Server Sender ID) config mode
+  no             Negate a command or set its defaults
+  redundancy     Enter cooperative key server configuration mode
+  registration   Configure registration for the group
+  rekey          Configure rekey policy for the group
+  sa             Configure a security association
+
+KS1(gkm-local-server)#sa ?
+  d3p               Enable IP delivery delay detection protocol for all SAs
+                    within the group
+  ipsec             Configure an IPsec SA
+  pair-wise-keying  Enable KGS pair-wise-keying
+  receive-only      Configure SA to work only in inbound direction
+
+KS1(gkm-local-server)#sa ipsec ?
+  <1-65535>  Sequence to insert into SA list
+
+KS1(gkm-local-server)#sa ipsec 1
+KS1(gkm-sa-ipsec)#profile profile_1
+KS1(gkm-sa-ipsec)#match add
+KS1(gkm-sa-ipsec)#match address ?
+  ipv4  Match ipv4 packets
+  ipv6  Match ipv6 packets
+
+KS1(gkm-sa-ipsec)#match address ipv4 ?
+  <100-199>    IP access-list number
+  <2000-2699>  IP access-list number (expanded range)
+  WORD         Access-list name
+
+KS1(gkm-sa-ipsec)#match address ipv4 101
+KS1(gkm-sa-ipsec)#rep
+KS1(gkm-sa-ipsec)#replay coun
+KS1(gkm-sa-ipsec)#replay counter win
+KS1(gkm-sa-ipsec)#replay counter window-size 5
+KS1(gkm-sa-ipsec)#acc
+KS1(gkm-sa-ipsec)#exit
+KS1(gkm-local-server)#exit
+KS1(config-gkm-group)#exit
+KS1(config)#acc
+KS1(config)#access
+KS1(config)#access-li
+KS1(config)#access-list 101 permit ?
+  <0-255>  An IP protocol number
+  ahp      Authentication Header Protocol
+  eigrp    Cisco's EIGRP routing protocol
+  esp      Encapsulation Security Payload
+  gre      Cisco's GRE tunneling
+  icmp     Internet Control Message Protocol
+  igmp     Internet Gateway Message Protocol
+  ip       Any Internet Protocol
+  ipinip   IP in IP tunneling
+  nos      KA9Q NOS compatible IP over IP tunneling
+  ospf     OSPF routing protocol
+  pcp      Payload Compression Protocol
+  pim      Protocol Independent Multicast
+  tcp      Transmission Control Protocol
+  udp      User Datagram Protocol
+
+KS1(config)#access-list 101 permit ip 10.0.0.0 ?
+  A.B.C.D  Source wildcard bits
+
+KS1(config)#$ 101 permit ip 10.0.0.0 0.3.255.255 10.0.0.0 0.3.255.255        
+KS1(config)#do write memory 
+Building configuration...
+
+  [OK]
+KS1(config)#
+</pre>
