@@ -90,10 +90,17 @@ FlexVPN:
     GDOI protocol.
   <h4>Key Server</h4>
     Is the most critical device in the GETPVN solution. The minimal components that should be configured on a key server:
-     <ol>
+     <ul>
      <li>IKE policy</li>
      <li>RSA key for rekeying</li>
      <li>IPSec policies</li>
      <li>Traffic classification</li>
-     </ol>
+     </ul>
+Key Server is responsible for registering the group emebers, sending out encryption keys and rekeying process that  occurs periodicaly.
+It cannot be a group member, GETVPN needs at least one Key Server. Key Server uses the protocol GDOI to communicate with the group members.
+Upon initialization, a group member registers with the Key Server by using a preshared key or certification PKI. Once a group member is authorized it retrieves the policy configuration and the two keys used for communication with other group members. The Key Server is responsible for maintaining the SA policy, authenticate group members ans provifding session keys for encrypting/decryptig traffic.
+Key Server provifrs two keys for group members:
+key encryption key (KEK) protects control plane communication such as rekeying process
+traffic encryption key (TEK) responsible for payload encryption between group members, it  supports the IPSec SA that all group members use to encrypt/decryp payloads.
+
   </p>
