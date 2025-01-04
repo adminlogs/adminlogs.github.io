@@ -135,7 +135,6 @@ Router(config)#hostname KS1
 KS1(config)#do write memory
 Building configuration...
 [OK]
-KS1(config)#crypto isakm
 KS1(config)#crypto isakmp ?
   aggressive-mode           Disable ISAKMP aggressive mode 
   client                    Set client configuration policy
@@ -155,7 +154,6 @@ KS1(config)#crypto isakmp ?
   xauth                     Set Extended Authentication values
 
 KS1(config)#crypto isakmp policy 1
-KS1(config-isakmp)#encry
 KS1(config-isakmp)#encryption aes 128
 KS1(config-isakmp)#hash sha256
 KS1(config-isakmp)#group 14
@@ -413,7 +411,7 @@ KS1(config)#crypto key generate ?
 
 KS1(config)#crypto key generate rsa ?
   encryption    Generate a general purpose RSA key pair for signing and
-                encryption
+                encryptionxit
   exportable    Allow the key to be exported
   general-keys  Generate a general purpose RSA key pair for signing and
                 encryption
@@ -471,7 +469,7 @@ KS1(config)#crypto gdoi ?
   group  Configure a GKM (Group Key Management, GDOI or G-IKEv2) Group
 
 KS1(config)#crypto gdoi group ?
-  WORD  Group Name
+  WORD  Group Namecr
   ipv6  IPv6 GKM (Group Key Management) Group
 
 KS1(config)#crypto gdoi group group_5
