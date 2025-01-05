@@ -657,3 +657,23 @@ Building configuration...
   [OK]
 KS1(config)#
 </pre>
+<h3>DMVPN (Dynamic Multipoint VPN)</h3>
+GRE (Generic Routing Encapsulatio) and NHRP (Next Hop Resolution Protocol)
+mGRE (multipoint Generic Routing Encapsulation)
+DMVPN uses severals components to achieve either Hub-to-Spoke or Spoke-to-Spoke solution: mGRE, NHRP and IPSec.
+<h4>mGRE multipoint Generic Routing Encapsulation</h4>
+mGRE enables routers to support multiple GRE tunnels on a single interface.
+<p>This single interface can receive inbound GRE connections from dynamically addressed remote site locations and simultaneously support dynamic routing protocols, IP Multicast, and non-IP protocols. </p>
+<p>GRE uses IP protocol 47, the GRE limitations:
+<ul>
+  <li>GRE is not a cryptographic protocol and it does not provide data protection</li>
+  <li>GRE can be CPU intensive</li>
+  <li>IP MTU and fragmentation issye might occur aith some applications</li>
+  <li>Vendors interoperability</li>
+</ul>
+</p>
+<h4>NHRP Next Hop Resolution Protocol</h4>
+<p>NHRP is used as the primary communication system for DMVPN hubs to inform spoke devices about other registered spokes. Its a Client/Server protocol, the hub is the server and the spokes are the clients.
+The hub maintains a database of the spokes that have successfully registered.
+During the registration process, each spoke provides the server with its public IP address and the internal IP address of its GRE tunnel.
+</p>
