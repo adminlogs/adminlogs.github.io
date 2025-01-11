@@ -62,5 +62,5 @@ westnode(config)#interface FastEthernet 0/0
 westnode(config-if)#crypto map westnode_to_eastnode_map 
 *Mar  1 03:39:08.183: %CRYPTO-6-ISAKMP_ON_OFF: ISAKMP is ON
 westnode(config-if)#exit
-westnode(config)#
+westnode(config)#ip route 0.0.0.0 0.0.0.0 FastEthernet 0/0 50.0.0.2
 </pre>
