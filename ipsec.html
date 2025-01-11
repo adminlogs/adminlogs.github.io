@@ -48,14 +48,14 @@ westnode(config-isakmp)#exit
 westnode(config)#crypto isak
 westnode(config)#crypto isakmp key 0 IPSECISAKMPKEY address 70.0.0.1 
 westnode(config)#access-list 100 permit ip 192.168.5.0 0.0.0.255 192.168.7.0 0.0.0.254 
-westnode(config)#$crypto ipsec transform-set westnode-to-eastnode esp-3des esp-sha-hmac 
+westnode(config)#crypto ipsec transform-set westnode-to-eastnode_ts esp-3des esp-sha-hmac 
 westnode(cfg-crypto-trans)#mode tunnel 
 westnode(cfg-crypto-trans)#exit
 westnode(config)#crypto map westnode_to_eastnode_map 1 ipsec-isakmp 
 % NOTE: This new crypto map will remain disabled until a peer
 	and a valid access list have been configured.
 westnode(config-crypto-map)#match address 100
-westnode(config-crypto-map)#set transform-set westnode-to-eastnode
+westnode(config-crypto-map)#set transform-set westnode-to-eastnode_ts
 westnode(config-crypto-map)#set peer 70.0.0.1  
 westnode(config-crypto-map)#exit
 westnode(config)#interface FastEthernet 0/0
@@ -64,3 +64,4 @@ westnode(config-if)#crypto map westnode_to_eastnode_map
 westnode(config-if)#exit
 westnode(config)#ip route 0.0.0.0 0.0.0.0 FastEthernet 0/0 50.0.0.2
 </pre>
+
