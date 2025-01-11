@@ -17,3 +17,458 @@
 <h3>IKE Phase 2</h3>
 <p style="text-align:justify;">After the tunnel of the IKE Phase 1 is established, the gateways immediately begin to establish IKE Phase 2 tunnel using this the IKE Phase 1 tunnel during the negociation. The name of the mode for building IKE Pjase2 tunnel is called <u>Quick mode</u>. The IKE Phase 2 tunnel is used to send encrypted users data. IKE
 Phase 2 tunnel creates two one-way(unidirectional), these tunnels are often reffered to Security Aggrement or Security Associations (SA). Each SA is aasigned a unique number for tracking.</p>
+
+<pre>Trying ::1...
+Connected to localhost.
+Escape character is &apos;^]&apos;.
+Connected to Dynamips VM &quot;R1&quot; (ID 1, type c3600) - Console port
+Press ENTER to get the prompt.
+ROMMON emulation microcode.
+
+                           Launching IOS image at 0x80008000...
+
+                                                               Smart Init is disabled. IOMEM set to: 5  
+
+                                                                                                        Using iomem percentage: 5
+
+              Restricted Rights Legend
+
+Use, duplication, or disclosure by the Government is
+subject to restrictions as set forth in subparagraph
+(c) of the Commercial Computer Software - Restricted
+Rights clause at FAR sec. 52.227-19 and subparagraph
+(c) (1) (ii) of the Rights in Technical Data and Computer
+Software clause at DFARS sec. 252.227-7013.
+
+           cisco Systems, Inc.
+           170 West Tasman Drive
+           San Jose, California 95134-1706
+
+
+
+Cisco IOS Software, 3600 Software (C3660-A3JK9S-M), Version 12.4(25d), RELEASE SOFTWARE (fc1)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2010 by Cisco Systems, Inc.
+Compiled Wed 18-Aug-10 07:32 by prod_rel_team
+
+
+This product contains cryptographic features and is subject to United
+States and local country laws governing import, export, transfer and
+use. Delivery of Cisco cryptographic products does not imply
+third-party authority to import, export, distribute or use encryption.
+Importers, exporters, distributors and users are responsible for
+compliance with U.S. and local country laws. By using this product you
+agree to comply with applicable laws and regulations. If you are unable
+to comply with U.S. and local laws, return this product immediately.
+
+A summary of U.S. laws governing Cisco cryptographic products may be found at:
+http://www.cisco.com/wwl/export/crypto/tool/stqrg.html
+
+If you require further assistance please contact us by sending email to
+export@cisco.com.
+
+Cisco 3660 (R527x) processor (revision 1.0) with 187392K/9216K bytes of memory.
+Processor board ID FTX0945W0MY
+R527x CPU at 250MHz, Implementation 40, Rev 1.2, 512KB L2 Cache
+
+
+3660 Chassis type: ENTERPRISE
+3 FastEthernet interfaces
+DRAM configuration is 64 bits wide with parity enabled.
+253K bytes of NVRAM.
+8192K bytes of processor board System flash (Read/Write)
+
+SETUP: new interface FastEthernet0/0 placed in &quot;shutdown&quot; state
+SETUP: new interface FastEthernet0/1 placed in &quot;shutdown&quot; state
+SETUP: new interface FastEthernet1/0 placed in &quot;shutdown&quot; state
+
+
+Press RETURN to get started!
+
+
+*Mar  1 00:00:02.559: %LINEPROTO-5-UPDOWN: Line protocol on Interface VoIP-Null0, changed state to up
+*Mar  1 00:00:02.711: %SYS-5-CONFIG_I: Configured from memory by console
+*Mar  1 00:00:02.795: %LINEPROTO-5-UPDOWN: Line protocol on Interface IPv6-mpls, changed state to up
+*Mar  1 00:00:02.919: %SYS-5-RESTART: System restarted --
+Cisco IOS Software, 3600 Software (C3660-A3JK9S-M), Version 12.4(25d), RELEASE SOFTWARE (fc1)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2010 by Cisco Systems, Inc.
+Compiled Wed 18-Aug-10 07:32 by prod_rel_team
+*Mar  1 00:00:02.927: %SNMP-5-COLDSTART: SNMP agent on host R1 is undergoing a cold start
+*Mar  1 00:00:03.107: %LINK-5-CHANGED: Interface FastEthernet0/0, changed state to administratively down
+*Mar  1 00:00:03.155: %LINK-5-CHANGED: Interface FastEthernet0/1, changed state to administratively down
+*Mar  1 00:00:03.207: %LINK-5-CHANGED: Interface FastEthernet1/0, changed state to administratively down
+*Mar  1 00:00:04.107: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/0, changed state to down
+*Mar  1 00:00:04.155: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/1, changed state to down
+*Mar  1 00:00:04.207: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet1/0, changed state to down
+R1#
+R1#
+R1#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+R1(config)#interfa
+R1(config)#interface FastEthernet0/0
+R1(config-if)#ip address 50.0.0.2 255.255.255.252
+R1(config-if)#no shutdown
+R1(config-if)#
+*Mar  1 00:18:26.951: %LINK-3-UPDOWN: Interface FastEthernet0/0, changed state to up
+*Mar  1 00:18:27.951: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/0, changed state to up
+R1(config-if)#exit
+R1(config)#interface FastEthernet 0/1
+R1(config-if)#ip address 192.168.5.254 255.255.255.0
+R1(config-if)#no shutdown
+R1(config-if)#exit
+*Mar  1 00:19:56.771: %LINK-3-UPDOWN: Interface FastEthernet0/1, changed state to up
+*Mar  1 00:19:57.771: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/1, changed state to up
+R1(config-if)#exit
+R1(config)#hostname westnode
+westnode(config)#ip domain-name adminlabs.local
+westnode(config)#interface FastEthernet0/0             
+westnode(config-if)#no ip address 50.0.0.2 255.255.255.252
+westnode(config-if)#ip address 50.0.0.1 255.255.255.252   
+westnode(config-if)#exit
+westnode(config)#crypto ?
+  ca            Certification authority
+  call          Configure Crypto Call Admission Control
+  dynamic-map   Specify a dynamic crypto map template
+  engine        Enter a crypto engine configurable menu
+  identity      Enter a crypto identity list
+  ipsec         Configure IPSEC policy
+  isakmp        Configure ISAKMP policy
+  key           Long term key operations
+  keyring       Key ring commands
+  logging       logging messages
+  map           Enter a crypto map
+  mib           Configure Crypto-related MIB Parameters
+  pki           Public Key components
+  provisioning  Secure Device Provisioning
+  wui           Crypto HTTP configuration interfaces
+  xauth         X-Auth parameters
+
+westnode(config)#crypto isakmp ?
+  aggressive-mode       Disable ISAKMP aggressive mode 
+  client                Set client configuration policy
+  enable                Enable ISAKMP
+  identity              Set the identity which ISAKMP will use
+  invalid-spi-recovery  Initiate IKE and send Invalid SPI Notify
+  keepalive             Set a keepalive interval for use with IOS peers
+  key                   Set pre-shared key for remote peer
+  nat                   Set a nat  keepalive interval for use with IOS peers
+  peer                  Set Peer Policy
+  policy                Set policy for an ISAKMP protection suite
+  profile               Define ISAKMP Profiles
+  xauth                 Set Extended Authentication values
+
+westnode(config)#crypto isakmp policy 1 ?
+  &lt;cr&gt;
+
+westnode(config)#crypto isakmp policy 1 
+westnode(config-isakmp)#?
+ISAKMP commands:
+  authentication  Set authentication method for protection suite
+  default         Set a command to its defaults
+  encryption      Set encryption algorithm for protection suite
+  exit            Exit from ISAKMP protection suite configuration mode
+  group           Set the Diffie-Hellman group
+  hash            Set hash algorithm for protection suite
+  lifetime        Set lifetime for ISAKMP security association
+  no              Negate a command or set its defaults
+
+westnode(config-isakmp)#encryption ?
+  3des  Three key triple DES
+  aes   AES - Advanced Encryption Standard.
+  des   DES - Data Encryption Standard (56 bit keys).
+
+westnode(config-isakmp)#encryption 3des ?
+  &lt;cr&gt;
+
+westnode(config-isakmp)#encryption 3des 
+westnode(config-isakmp)#hash ?
+  md5  Message Digest 5
+  sha  Secure Hash Standard
+
+westnode(config-isakmp)#hash sha
+westnode(config-isakmp)#group ?
+  1  Diffie-Hellman group 1
+  2  Diffie-Hellman group 2
+  5  Diffie-Hellman group 5
+
+westnode(config-isakmp)#group 5
+westnode(config-isakmp)#?
+ISAKMP commands:
+  authentication  Set authentication method for protection suite
+  default         Set a command to its defaults
+  encryption      Set encryption algorithm for protection suite
+  exit            Exit from ISAKMP protection suite configuration mode
+  group           Set the Diffie-Hellman group
+  hash            Set hash algorithm for protection suite
+  lifetime        Set lifetime for ISAKMP security association
+  no              Negate a command or set its defaults
+
+westnode(config-isakmp)#encryption ?
+  3des  Three key triple DES
+  aes   AES - Advanced Encryption Standard.
+  des   DES - Data Encryption Standard (56 bit keys).
+
+westnode(config-isakmp)#authentication ?
+  pre-share  Pre-Shared Key
+  rsa-encr   Rivest-Shamir-Adleman Encryption
+  rsa-sig    Rivest-Shamir-Adleman Signature
+
+westnode(config-isakmp)#authentication pre-share
+westnode(config-isakmp)#lifet
+westnode(config-isakmp)#lifetime ?
+  &lt;60-86400&gt;  lifetime in seconds
+
+westnode(config-isakmp)#lifetime 3600
+westnode(config-isakmp)#?   
+ISAKMP commands:
+  authentication  Set authentication method for protection suite
+  default         Set a command to its defaults
+  encryption      Set encryption algorithm for protection suite
+  exit            Exit from ISAKMP protection suite configuration mode
+  group           Set the Diffie-Hellman group
+  hash            Set hash algorithm for protection suite
+  lifetime        Set lifetime for ISAKMP security association
+  no              Negate a command or set its defaults
+
+westnode(config-isakmp)#exit
+westnode(config)#crypto isak
+westnode(config)#crypto isakmp ?
+  aggressive-mode       Disable ISAKMP aggressive mode 
+  client                Set client configuration policy
+  enable                Enable ISAKMP
+  identity              Set the identity which ISAKMP will use
+  invalid-spi-recovery  Initiate IKE and send Invalid SPI Notify
+  keepalive             Set a keepalive interval for use with IOS peers
+  key                   Set pre-shared key for remote peer
+  nat                   Set a nat  keepalive interval for use with IOS peers
+  peer                  Set Peer Policy
+  policy                Set policy for an ISAKMP protection suite
+  profile               Define ISAKMP Profiles
+  xauth                 Set Extended Authentication values
+
+westnode(config)#crypto isakmp key ?
+  0  Specifies an UNENCRYPTED password will follow
+  6  Specifies an ENCRYPTED password will follow
+
+westnode(config)#crypto isakmp key 0 IPSECISAKMPKEY ?
+  address   define shared key with IP address
+  hostname  define shared key with hostname
+
+westnode(config)#crypto isakmp key 0 IPSECISAKMPKEY add
+westnode(config)#crypto isakmp key 0 IPSECISAKMPKEY address 70.0.0.1 ?
+  A.B.C.D   Peer IP subnet mask
+  no-xauth  Bypasses XAuth for this peer
+  &lt;cr&gt;
+
+westnode(config)#crypto isakmp key 0 IPSECISAKMPKEY address 70.0.0.1 
+westnode(config)#acc
+westnode(config)#access-list 100 permit 192.168.5.0 ?   
+% Unrecognized command
+westnode(config)#access-list 100 permit ip 192.168.5.0 ?
+  A.B.C.D  Source wildcard bits
+
+westnode(config)#$ 100 permit ip 192.168.5.0 0.0.0.255 192.168.7.0 0.0.0.254 ?
+  dscp        Match packets with given dscp value
+  fragments   Check non-initial fragments
+  log         Log matches against this entry
+  log-input   Log matches against this entry, including input interface
+  option      Match packets with given IP Options value
+  precedence  Match packets with given precedence value
+  time-range  Specify a time-range
+  tos         Match packets with given TOS value
+  &lt;cr&gt;
+
+westnode(config)#$ 100 permit ip 192.168.5.0 0.0.0.255 192.168.7.0 0.0.0.254 
+westnode(config)#crypto isakmp ?
+  aggressive-mode       Disable ISAKMP aggressive mode 
+  client                Set client configuration policy
+  enable                Enable ISAKMP
+  identity              Set the identity which ISAKMP will use
+  invalid-spi-recovery  Initiate IKE and send Invalid SPI Notify
+  keepalive             Set a keepalive interval for use with IOS peers
+  key                   Set pre-shared key for remote peer
+  nat                   Set a nat  keepalive interval for use with IOS peers
+  peer                  Set Peer Policy
+  policy                Set policy for an ISAKMP protection suite
+  profile               Define ISAKMP Profiles
+  xauth                 Set Extended Authentication values
+
+westnode(config)#crypto isakmp peer ?
+  address   define peer policy for IP address
+  hostname  define peer policy for hostname
+
+westnode(config)#crypto isakmp pro  
+westnode(config)#crypto isakmp profile ?
+  WORD  Name of ISAKMP Profile
+
+westnode(config)#crypto ?              
+  ca            Certification authority
+  call          Configure Crypto Call Admission Control
+  dynamic-map   Specify a dynamic crypto map template
+  engine        Enter a crypto engine configurable menu
+  identity      Enter a crypto identity list
+  ipsec         Configure IPSEC policy
+  isakmp        Configure ISAKMP policy
+  key           Long term key operations
+  keyring       Key ring commands
+  logging       logging messages
+  map           Enter a crypto map
+  mib           Configure Crypto-related MIB Parameters
+  pki           Public Key components
+  provisioning  Secure Device Provisioning
+  wui           Crypto HTTP configuration interfaces
+  xauth         X-Auth parameters
+
+westnode(config)#crypto ipsec ?
+  client                Configure a client
+  df-bit                Handling of encapsulated DF bit.
+  fragmentation         Handling of fragmentation of near-MTU sized packets
+  nat-transparency      IPsec NAT transparency model
+  optional              Enable optional encryption for IPSec
+  profile               Configure an ipsec policy profile
+  security-association  Security association parameters
+  transform-set         Define transform and settings
+
+westnode(config)#crypto ipsec transform-set ?
+  WORD  Transform set tag
+
+westnode(config)#crypto ipsec transform-set westnode-to-eastnode ?           
+  ah-md5-hmac   AH-HMAC-MD5 transform
+  ah-sha-hmac   AH-HMAC-SHA transform
+  comp-lzs      IP Compression using the LZS compression algorithm
+  esp-3des      ESP transform using 3DES(EDE) cipher (168 bits)
+  esp-aes       ESP transform using AES cipher
+  esp-des       ESP transform using DES cipher (56 bits)
+  esp-md5-hmac  ESP transform using HMAC-MD5 auth
+  esp-null      ESP transform w/o cipher
+  esp-seal      ESP transform using SEAL cipher (160 bits)
+  esp-sha-hmac  ESP transform using HMAC-SHA auth
+
+westnode(config)#$c transform-set westnode-to-eastnode esp-3des esp-sha-hmac ?
+  ah-md5-hmac  AH-HMAC-MD5 transform
+  ah-sha-hmac  AH-HMAC-SHA transform
+  comp-lzs     IP Compression using the LZS compression algorithm
+  &lt;cr&gt;
+
+westnode(config)#$c transform-set westnode-to-eastnode esp-3des esp-sha-hmac 
+westnode(cfg-crypto-trans)#?
+Crypto transform configuration commands:
+  default  Set a command to its defaults
+  exit     Exit from crypto transform configuration mode
+  mode     encapsulation mode (transport/tunnel)
+  no       Negate a command or set its defaults
+
+westnode(cfg-crypto-trans)#mode tunne
+westnode(cfg-crypto-trans)#mode tunnel ?
+  &lt;cr&gt;
+
+westnode(cfg-crypto-trans)#mode tunnel 
+westnode(cfg-crypto-trans)#exit
+westnode(config)#crypto ?
+  ca            Certification authority
+  call          Configure Crypto Call Admission Control
+  dynamic-map   Specify a dynamic crypto map template
+  engine        Enter a crypto engine configurable menu
+  identity      Enter a crypto identity list
+  ipsec         Configure IPSEC policy
+  isakmp        Configure ISAKMP policy
+  key           Long term key operations
+  keyring       Key ring commands
+  logging       logging messages
+  map           Enter a crypto map
+  mib           Configure Crypto-related MIB Parameters
+  pki           Public Key components
+  provisioning  Secure Device Provisioning
+  wui           Crypto HTTP configuration interfaces
+  xauth         X-Auth parameters
+
+westnode(config)#crypto map ?
+  WORD  Crypto map tag
+
+westnode(config)#crypto map westnode_to_eastnode_map ?
+  &lt;1-65535&gt;       Sequence to insert into crypto map entry
+  client          Specify client configuration settings
+  isakmp          Specify isakmp configuration settings
+  isakmp-profile  Specify isakmp profile to use
+  local-address   Interface to use for local address for this crypto map
+  redundancy      High availability options for this map
+
+westnode(config)#crypto map westnode_to_eastnode_map 1 ?
+  ipsec-isakmp  IPSEC w/ISAKMP
+  ipsec-manual  IPSEC w/manual keying
+  &lt;cr&gt;
+
+westnode(config)#crypto map westnode_to_eastnode_map 1 ipsec_isakmp ?
+% Unrecognized command
+westnode(config)#crypto map westnode_to_eastnode_map 1 ipsec-isakmp ?
+  dynamic  Enable dynamic crypto map support
+  profile  Enable crypto map as a crypto-profile
+  &lt;cr&gt;
+
+westnode(config)#crypto map westnode_to_eastnode_map 1 ipsec-isakmp 
+% NOTE: This new crypto map will remain disabled until a peer
+	and a valid access list have been configured.
+westnode(config-crypto-map)#?
+Crypto Map configuration commands:
+  default        Set a command to its defaults
+  description    Description of the crypto map statement policy
+  dialer         Dialer related commands
+  exit           Exit from crypto map configuration mode
+  match          Match values.
+  no             Negate a command or set its defaults
+  qos            Quality of Service related commands
+  reverse-route  Reverse Route Injection.
+  set            Set values for encryption/decryption
+
+westnode(config-crypto-map)#match ?
+  address  Match address of packets to encrypt.
+
+westnode(config-crypto-map)#match add
+westnode(config-crypto-map)#match address ?
+  &lt;100-199&gt;    IP access-list number
+  &lt;2000-2699&gt;  IP access-list number (expanded range)
+  WORD         Access-list name
+
+westnode(config-crypto-map)#match address 100
+westnode(config-crypto-map)#?
+Crypto Map configuration commands:
+  default        Set a command to its defaults
+  description    Description of the crypto map statement policy
+  dialer         Dialer related commands
+  exit           Exit from crypto map configuration mode
+  match          Match values.
+  no             Negate a command or set its defaults
+  qos            Quality of Service related commands
+  reverse-route  Reverse Route Injection.
+  set            Set values for encryption/decryption
+
+westnode(config-crypto-map)#set ?
+  identity              Identity restriction.
+  ip                    Interface Internet Protocol config commands
+  isakmp-profile        Specify isakmp Profile
+  nat                   Set NAT translation
+  peer                  Allowed Encryption/Decryption peer.
+  pfs                   Specify pfs settings
+  security-association  Security association parameters
+  transform-set         Specify list of transform sets in priority order
+
+westnode(config-crypto-map)#set trans
+westnode(config-crypto-map)#set transform-set westnode-to-eastnode
+westnode(config-crypto-map)#set isakmp-profile ?
+  WORD  Name the isakmp profile
+
+westnode(config-crypto-map)#set peer 70.0.0.1  
+westnode(config-crypto-map)#exit
+westnode(config)#interface FastEthernet 0/0
+westnode(config-if)#crypto map westnode_to_eastnode_map ?
+  redundancy  enable redundancy
+  &lt;cr&gt;
+
+westnode(config-if)#crypto map westnode_to_eastnode_map 
+westnode(config-if)#ex
+*Mar  1 03:39:08.183: %CRYPTO-6-ISAKMP_ON_OFF: ISAKMP is ON
+westnode(config-if)#exit
+westnode(config)#
+
+</pre>
