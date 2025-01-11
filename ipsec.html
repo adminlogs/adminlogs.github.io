@@ -81,7 +81,7 @@ westnode(config-isakmp)#group 5
 westnode(config-isakmp)#authentication pre-share
 westnode(config-isakmp)#lifetime 3600
 westnode(config-isakmp)#exit
-westnode(config)#crypto isakmp key 0 IPSECISAKMPKEY address 70.0.0.1 
+westnode(config)#crypto isakmp key 0 IPSECISAKMPKEY address 50.0.0.1 
 westnode(config)#$ 100 permit ip 192.168.7.0 0.0.0.255 192.168.2.0 0.0.0.254 
 westnode(config)#$c transform-set eastnode-to-wtnode-to-westnode_ts esp-3des 
 *Mar  1 00:00:51.647: %LINK-3-UPDOWN: Interface FastEthernet0/0, changed state to up
