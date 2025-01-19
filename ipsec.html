@@ -96,11 +96,10 @@ westnode(config-crypto-map)#set transform-set eastnode-to-westnode_ts
 westnode(config-crypto-map)#set peer 50.0.0.1  
 westnode(config-crypto-map)#exit
 westnode(config)#interface FastEthernet 0/0
-westnode(config-if)#crypto map westnode_to_eastnode_map 
-ERROR: Crypto Map with tag &quot;westnode_to_eastnode_map&quot; does not exist.
-
-westnode(config-if)#
-*Mar  1 00:00:53.019: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/1, changed state to upexit
+westnode(config-if)#crypto map eastnode_to_westnode_map 
+westnode(config-if)#exit
+*Mar  1 00:00:53.019: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/1, changed state to up
+	
 westnode(config)#ip route 0.0.0.0 0.0.0.0 FastEthernet 0/0 70.0.0.2
 westnode(config)#
 </pre>
